@@ -1,0 +1,378 @@
+<?php
+session_start();
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+require_once 'config/database.php';
+
+$keyword = isset($_GET['q']) ? $conn->real_escape_string(trim($_GET['q'])) : '';
+$max_price = isset($_GET['price']) ? (int) $_GET['price'] : 5000000;
+$guest = isset($_GET['guest']) ? (int) $_GET['guest'] : 0;
+$amenity = isset($_GET['amenity']) ? $conn->real_escape_string($_GET['amenity']) : '';
+$khu_vuc = isset($_GET['khuvuc']) ? $conn->real_escape_string($_GET['khuvuc']) : '';
+
+// Map từ khóa tìm kiếm tới khu vực
+$keyword_map = [
+    'biển' => 'Phan Thiết',
+    'beach' => 'Phan Thiết',
+    'phan thiết' => 'Phan Thiết',
+    'cát' => 'Phan Thiết',
+    'bãi biển' => 'Phan Thiết',
+    'núi' => 'Tây Ninh',
+    'mountain' => 'Tây Ninh',
+    'tây ninh' => 'Tây Ninh',
+    'rừng' => 'Tây Ninh',
+    'thiên nhiên' => 'Tây Ninh',
+    'bà đen' => 'Tây Ninh',
+    'phố' => 'Hồ Chí Minh',
+    'thành phố' => 'Hồ Chí Minh',
+    'sài gòn' => 'Hồ Chí Minh',
+    'hồ chí minh' => 'Hồ Chí Minh',
+    'trung tâm' => 'Hồ Chí Minh',
+    'city' => 'Hồ Chí Minh',
+    'mua sắm' => 'Hồ Chí Minh',
+    'hà nội' => 'Hà Nội',
+    'hanoi' => 'Hà Nội',
+    'phố cổ' => 'Hà Nội',
+    'hồ gươm' => 'Hà Nội',
+    'thủ đô' => 'Hà Nội',
+    'văn hóa' => 'Hà Nội',
+    'di sản' => 'Hà Nội',
+    'đà nẵng' => 'Đà Nẵng',
+    'danang' => 'Đà Nẵng',
+    'mỹ khê' => 'Đà Nẵng',
+    'sơn trà' => 'Đà Nẵng',
+    'miền trung' => 'Đà Nẵng',
+    'hàn' => 'Đà Nẵng',
+    'ngũ hành sơn' => 'Đà Nẵng',
+];
+
+$detected_region = '';
+$keyword_lower = mb_strtolower($keyword, 'UTF-8');
+foreach ($keyword_map as $kw => $region) {
+    if (mb_strpos($keyword_lower, $kw) !== false) {
+        $detected_region = $region;
+        break;
+    }
+}
+
+$sql = "SELECT p.*, lp.TenLoai, lp.GiaPhong, lp.SoNguoiToiDa, lp.TienNghi, lp.KhuVuc, lp.TuKhoa
+        FROM Phong p 
+        JOIN LoaiPhong lp ON p.MaLoai = lp.MaLoai 
+        WHERE lp.GiaPhong <= $max_price";
+
+// Nếu phát hiện khu vực từ keyword
+if ($detected_region) {
+    $sql .= " AND lp.KhuVuc = '$detected_region'";
+} elseif ($khu_vuc) {
+    $sql .= " AND lp.KhuVuc = '$khu_vuc'";
+}
+
+if ($keyword && !$detected_region) {
+    $sql .= " AND (lp.TenLoai LIKE '%$keyword%' OR p.MaPhong LIKE '%$keyword%' OR lp.TuKhoa LIKE '%$keyword%' OR lp.KhuVuc LIKE '%$keyword%')";
+}
+if ($guest > 0)
+    $sql .= " AND lp.SoNguoiToiDa >= $guest";
+if ($amenity)
+    $sql .= " AND lp.TienNghi LIKE '%$amenity%'";
+
+$sql .= " ORDER BY lp.KhuVuc ASC, lp.GiaPhong ASC";
+$result = $conn->query($sql);
+
+// Lấy danh sách khu vực
+$kv_res = $conn->query("SELECT DISTINCT KhuVuc FROM LoaiPhong WHERE KhuVuc IS NOT NULL ORDER BY KhuVuc");
+$all_regions = [];
+while ($kv = $kv_res->fetch_assoc())
+    $all_regions[] = $kv['KhuVuc'];
+
+// Nhóm theo khu vực
+$rooms_by_region = [];
+$all_rooms = [];
+if ($result) {
+    while ($rm = $result->fetch_assoc()) {
+        $region = $rm['KhuVuc'] ?? 'Khác';
+        $rooms_by_region[$region][] = $rm;
+        $all_rooms[] = $rm;
+    }
+}
+
+// Icon cho khu vực
+$region_icons = [
+    'Phan Thiết' => 'fa-umbrella-beach',
+    'Hà Nội' => 'fa-landmark',
+    'Hồ Chí Minh' => 'fa-city',
+    'Tây Ninh' => 'fa-mountain-sun',
+    'Đà Nẵng' => 'fa-water',
+];
+$region_colors = [
+    'Phan Thiết' => '#0ea5e9',
+    'Hà Nội' => '#ef4444',
+    'Hồ Chí Minh' => '#8b5cf6',
+    'Tây Ninh' => '#22c55e',
+    'Đà Nẵng' => '#f59e0b',
+];
+?>
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm Kiếm Phòng - K-Hotel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .region-card {
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .region-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .room-result {
+            transition: transform 0.2s;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .room-result:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .region-badge {
+            font-size: 0.75rem;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg bg-white border-bottom hilton-nav sticky-top shadow-sm">
+        <div class="container px-4">
+            <a class="navbar-brand fw-bold fs-3 text-dark text-center"
+                style="font-family: serif; border: 2px solid #000; padding: 0 5px; line-height: 1.2;"
+                href="index.php">K-Hotel<br><span
+                    style="font-size: 0.6rem; letter-spacing: 1px; display: block; border-top: 1px solid #000; font-family: sans-serif; font-weight: bold; margin-top: 2px;">FOR
+                    THE STAY</span></a>
+            <div class="d-flex gap-2">
+                <a href="index.php" class="btn btn-outline-dark btn-sm rounded-pill px-3"><i
+                        class="fa-solid fa-house me-1"></i>Trang chủ</a>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <a href="lichsu.php" class="btn btn-outline-primary btn-sm rounded-pill px-3"><i
+                            class="fa-solid fa-clock-rotate-left me-1"></i>Lịch sử</a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Quick Region Selector -->
+    <div class="bg-white py-3 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap gap-2 justify-content-center">
+                <a href="timkiem.php"
+                    class="btn <?= empty($khu_vuc) && empty($keyword) ? 'btn-dark' : 'btn-outline-dark' ?> btn-sm rounded-pill px-3">
+                    <i class="fa-solid fa-globe me-1"></i>Tất cả
+                </a>
+                <?php foreach ($all_regions as $r):
+                    $icon = $region_icons[$r] ?? 'fa-map-marker';
+                    $active = ($khu_vuc == $r || $detected_region == $r);
+                    ?>
+                    <a href="timkiem.php?khuvuc=<?= urlencode($r) ?>"
+                        class="btn <?= $active ? 'btn-primary' : 'btn-outline-secondary' ?> btn-sm rounded-pill px-3">
+                        <i class="fa-solid <?= $icon ?> me-1"></i><?= $r ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gợi ý tìm kiếm nhanh -->
+    <?php if (empty($keyword) && empty($khu_vuc)): ?>
+        <div class="container my-4">
+            <h5 class="fw-bold mb-3"><i class="fa-solid fa-compass text-primary me-2"></i>Bạn muốn đi đâu?</h5>
+            <div class="row g-3">
+                <?php
+                $suggestions = [
+                    ['q' => 'biển', 'label' => 'Biển — Phan Thiết', 'icon' => 'fa-umbrella-beach', 'color' => '#0ea5e9', 'image' => 'assets/img/phanthiet.png', 'desc' => 'Bãi biển riêng tư, sóng biển êm đềm'],
+                    ['q' => 'núi', 'label' => 'Núi — Tây Ninh', 'icon' => 'fa-mountain-sun', 'color' => '#22c55e', 'image' => 'assets/img/tayninh.png', 'desc' => 'Thiên nhiên hùng vĩ, núi Bà Đen'],
+                    ['q' => 'phố cổ', 'label' => 'Phố Cổ — Hà Nội', 'icon' => 'fa-landmark', 'color' => '#ef4444', 'image' => 'https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/shutterstock1391898416-1646649508378.png', 'desc' => 'Văn hóa, di sản, Hồ Gươm'],
+                    ['q' => 'thành phố', 'label' => 'Thành Phố — HCM', 'icon' => 'fa-city', 'color' => '#8b5cf6', 'image' => 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?q=80&w=800&auto=format&fit=crop', 'desc' => 'Trung tâm sầm uất, mua sắm']
+                ];
+                foreach ($suggestions as $s):
+                    ?>
+                    <div class="col-md-3 col-6">
+                        <a href="timkiem.php?q=<?= urlencode($s['q']) ?>"
+                            class="region-card d-block text-white shadow-sm position-relative overflow-hidden"
+                            style="background-image: url('<?= $s['image'] ?>'); background-size: cover; background-position: center; height: 180px;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100"
+                                style="background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 100%); z-index: 1; transition: opacity 0.3s;"
+                                onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"></div>
+                            <div class="p-3 text-center position-relative h-100 d-flex flex-column justify-content-end align-items-center pb-4"
+                                style="z-index: 2; text-shadow: 2px 2px 4px rgba(0,0,0,0.9);">
+                                <i class="fa-solid <?= $s['icon'] ?> fs-3 mb-2 d-block text-white"
+                                    style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.9));"></i>
+                                <h6 class="fw-bold mb-1 text-white" style="letter-spacing: 0.5px;"><?= $s['label'] ?></h6>
+                                <small class="fw-medium text-light" style="font-size: 0.8rem;"><?= $s['desc'] ?></small>
+                            </div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <div class="container my-4">
+        <div class="row">
+            <!-- Lọc -->
+            <div class="col-md-3 mb-4">
+                <div class="card border-0 shadow-sm p-4 rounded-4">
+                    <h5 class="fw-bold mb-3"><i class="fa-solid fa-filter text-primary"></i> Lọc Phòng</h5>
+                    <form method="GET">
+                        <div class="mb-3">
+                            <label class="form-label text-muted small fw-bold">Bạn muốn đi đâu?</label>
+                            <input type="text" name="q" class="form-control bg-light border-0"
+                                value="<?= htmlspecialchars($keyword) ?>" placeholder="biển, núi, phố cổ, sài gòn...">
+                            <small class="text-muted">Gợi ý: <em>biển, núi, hà nội, sài gòn</em></small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted small fw-bold">Khu vực</label>
+                            <select name="khuvuc" class="form-select bg-light border-0">
+                                <option value="">Tất cả khu vực</option>
+                                <?php foreach ($all_regions as $r): ?>
+                                    <option value="<?= $r ?>" <?= $khu_vuc == $r ? 'selected' : '' ?>><?= $r ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted small fw-bold">Sức chứa tối thiểu</label>
+                            <input type="number" name="guest" class="form-control bg-light border-0"
+                                value="<?= $guest ?>" min="1" placeholder="2">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted small fw-bold">Mức giá tối đa: <span
+                                    class="fw-bold text-danger"><?= number_format($max_price) ?>₫</span></label>
+                            <input type="range" class="form-range" name="price" min="200000" max="5000000" step="100000"
+                                value="<?= $max_price ?>"
+                                oninput="this.previousElementSibling.querySelector('span').innerText = Number(this.value).toLocaleString('vi-VN') + '₫'">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label text-muted small fw-bold">Tiện nghi</label>
+                            <select name="amenity" class="form-select bg-light border-0">
+                                <option value="">Tất cả</option>
+                                <option value="Ban công" <?= $amenity == 'Ban công' ? 'selected' : '' ?>>Ban công</option>
+                                <option value="Bồn tắm" <?= $amenity == 'Bồn tắm' ? 'selected' : '' ?>>Bồn tắm</option>
+                                <option value="View biển" <?= $amenity == 'View biển' ? 'selected' : '' ?>>View biển
+                                </option>
+                                <option value="View núi" <?= $amenity == 'View núi' ? 'selected' : '' ?>>View núi</option>
+                                <option value="Hồ bơi" <?= $amenity == 'Hồ bơi' ? 'selected' : '' ?>>Hồ bơi</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold shadow-sm rounded-pill">
+                            <i class="fa-solid fa-magnifying-glass me-1"></i>Tìm phòng
+                        </button>
+                        <a href="timkiem.php" class="btn btn-light w-100 mt-2 text-danger small">Xóa Bộ Lọc</a>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Kết quả -->
+            <div class="col-md-9">
+                <?php if ($detected_region): ?>
+                    <div class="alert alert-info border-0 d-flex align-items-center gap-2 mb-3 rounded-3">
+                        <i class="fa-solid <?= $region_icons[$detected_region] ?? 'fa-map' ?> fs-4"
+                            style="color: <?= $region_colors[$detected_region] ?? '#666' ?>"></i>
+                        <div>Tìm kiếm "<strong><?= htmlspecialchars($keyword) ?></strong>" → Đề xuất phòng tại
+                            <strong><?= $detected_region ?></strong>
+                            <a href="timkiem.php" class="ms-2 text-decoration-none">[Xóa tìm kiếm]</a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <h3 class="fw-bold mb-4">
+                    <?php if ($khu_vuc || $detected_region): ?>
+                        <i class="fa-solid <?= $region_icons[$khu_vuc ?: $detected_region] ?? 'fa-map-marker' ?> me-2"
+                            style="color: <?= $region_colors[$khu_vuc ?: $detected_region] ?? '#666' ?>"></i>
+                        Phòng tại <?= $khu_vuc ?: $detected_region ?>
+                    <?php else: ?>
+                        Kết Quả Tìm Kiếm
+                    <?php endif; ?>
+                    <span class="badge bg-success fs-6 align-middle ms-2"><?= count($all_rooms) ?> phòng</span>
+                </h3>
+
+                <?php if (count($rooms_by_region) > 0): ?>
+                    <?php foreach ($rooms_by_region as $region => $rooms):
+                        $icon = $region_icons[$region] ?? 'fa-map-marker';
+                        $color = $region_colors[$region] ?? '#666';
+                        ?>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom">
+                                <i class="fa-solid <?= $icon ?> fs-5" style="color: <?= $color ?>"></i>
+                                <h5 class="fw-bold m-0"><?= htmlspecialchars($region) ?> <small
+                                        class="text-muted fw-normal">(<?= count($rooms) ?> phòng)</small></h5>
+                            </div>
+                            <div class="row g-3">
+                                <?php foreach ($rooms as $rm): ?>
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="card room-result h-100 border-0 shadow-sm">
+                                            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=600&auto=format&fit=crop"
+                                                class="card-img-top" alt="Room" style="height: 180px; object-fit: cover;">
+                                            <div class="card-body d-flex flex-column p-3">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h6 class="card-title fw-bold text-dark mb-0">
+                                                        <?= htmlspecialchars($rm['TenLoai']) ?>
+                                                    </h6>
+                                                    <span class="badge region-badge px-2 py-1"
+                                                        style="background: <?= $color ?>20; color: <?= $color ?>;">
+                                                        <i class="fa-solid <?= $icon ?> me-1"></i><?= $rm['MaPhong'] ?>
+                                                    </span>
+                                                </div>
+                                                <h5 class="text-primary fw-bold mb-2"><?= number_format($rm['GiaPhong']) ?> ₫<span
+                                                        class="fs-6 text-muted fw-normal">/đêm</span></h5>
+                                                <p class="text-muted small mb-1"><i class="fa-solid fa-users text-secondary"
+                                                        style="width:15px"></i> Tối đa <?= $rm['SoNguoiToiDa'] ?> người</p>
+                                                <p class="text-muted small mb-3"><i class="fa-solid fa-check text-success"
+                                                        style="width:15px"></i> <?= htmlspecialchars($rm['TienNghi']) ?></p>
+                                                <?php if ($rm['TrangThai'] == 'Trống'): ?>
+                                                    <a href="chitiet.php?id=<?= $rm['MaPhong'] ?>"
+                                                        class="btn btn-outline-primary mt-auto w-100 rounded-pill fw-bold btn-sm">Xem &
+                                                        Đặt phòng</a>
+                                                <?php else: ?>
+                                                    <button class="btn btn-outline-secondary mt-auto w-100 rounded-pill fw-bold btn-sm"
+                                                        disabled><i class="fa-solid fa-lock me-1"></i>Đang có khách</button>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="text-center mt-5">
+                        <i class="fa-solid fa-face-frown text-muted fs-1 mb-3"></i>
+                        <h4 class="text-muted">Không tìm thấy phòng phù hợp!</h4>
+                        <p>Thử tìm: <a href="?q=biển">biển</a> • <a href="?q=núi">núi</a> • <a href="?q=phố cổ">phố cổ</a> •
+                            <a href="?q=thành phố">thành phố</a>
+                        </p>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-dark text-white py-4 mt-4">
+        <div class="container text-center">
+            <p class="opacity-50 small m-0">&copy; 2026 K-Hotel Việt Nam</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

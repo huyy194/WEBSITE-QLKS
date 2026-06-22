@@ -1,0 +1,2376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-Hotel — Hệ Thống Quản Lý Khách Sạn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8CB7D;
+    --gold-pale: #FDF6E3;
+    --dark: #1A1A2E;
+    --dark2: #16213E;
+    --dark3: #0F3460;
+    --accent: #E94560;
+    --teal: #0A7D6C;
+    --teal-light: #0FA58E;
+    --bg: #F8F5EE;
+    --bg2: #FFFFFF;
+    --text: #1A1A2E;
+    --text2: #5A5A7A;
+    --text3: #9090AA;
+    --border: #E8E2D5;
+    --sidebar-w: 260px;
+    --radius: 12px;
+    --shadow: 0 4px 24px rgba(26,26,46,0.08);
+    --shadow-lg: 0 8px 40px rgba(26,26,46,0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    font-size: 14px;
+  }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    width: var(--sidebar-w);
+    background: var(--dark);
+    min-height: 100vh;
+    position: fixed;
+    top: 0; left: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    transition: transform .3s;
+  }
+
+  .sidebar-logo {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+
+  .logo-sub {
+    font-size: 10px;
+    color: rgba(201,168,76,0.6);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 16px 12px;
+    overflow-y: auto;
+  }
+
+  .nav-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px 12px 6px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: rgba(255,255,255,0.55);
+    font-size: 13.5px;
+    font-weight: 400;
+    transition: all .2s;
+    margin-bottom: 2px;
+    user-select: none;
+  }
+
+  .nav-item:hover {
+    background: rgba(201,168,76,0.1);
+    color: rgba(255,255,255,0.85);
+  }
+
+  .nav-item.active {
+    background: linear-gradient(135deg, rgba(201,168,76,0.25), rgba(201,168,76,0.1));
+    color: var(--gold-light);
+    font-weight: 500;
+  }
+
+  .nav-item .icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .nav-badge {
+    margin-left: auto;
+    background: var(--accent);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+  }
+
+  .sidebar-footer {
+    padding: 16px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .user-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+    flex-shrink: 0;
+  }
+
+  .user-info .name {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .user-info .role {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ===== MAIN ===== */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .topbar {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 28px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .topbar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--dark);
+    flex: 1;
+  }
+
+  .topbar-title span {
+    color: var(--gold);
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 14px;
+    width: 260px;
+  }
+
+  .search-box input {
+    border: none;
+    background: none;
+    font-size: 13px;
+    color: var(--text);
+    font-family: inherit;
+    outline: none;
+    width: 100%;
+  }
+
+  .search-box input::placeholder { color: var(--text3); }
+
+  .topbar-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all .2s;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), #B8912A);
+    color: white;
+    box-shadow: 0 2px 8px rgba(201,168,76,0.35);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 4px 16px rgba(201,168,76,0.45);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text2);
+    border: 1px solid var(--border);
+  }
+
+  .btn-ghost:hover { background: var(--bg); }
+
+  .notif-btn {
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    font-size: 17px;
+  }
+
+  .notif-dot {
+    position: absolute;
+    top: 6px; right: 6px;
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 1.5px solid white;
+  }
+
+  /* ===== CONTENT ===== */
+  .content {
+    padding: 28px;
+    flex: 1;
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ===== STAT CARDS ===== */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+
+  .stat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all .25s;
+  }
+
+  .stat-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--card-accent, var(--gold));
+    border-radius: 3px 0 0 3px;
+  }
+
+  .stat-card.green { --card-accent: #0A7D6C; }
+  .stat-card.red { --card-accent: #E94560; }
+  .stat-card.blue { --card-accent: #3A86FF; }
+  .stat-card.gold { --card-accent: var(--gold); }
+
+  .stat-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 12px;
+    background: var(--icon-bg, var(--gold-pale));
+  }
+
+  .stat-card.green .stat-icon { background: #E8F5F2; }
+  .stat-card.red .stat-icon { background: #FEE9EE; }
+  .stat-card.blue .stat-icon { background: #EBF2FF; }
+  .stat-card.gold .stat-icon { background: var(--gold-pale); }
+
+  .stat-val {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 12.5px;
+    color: var(--text2);
+    font-weight: 400;
+  }
+
+  .stat-change {
+    position: absolute;
+    top: 18px; right: 16px;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+
+  .stat-change.up { background: #E8F5F2; color: #0A7D6C; }
+  .stat-change.down { background: #FEE9EE; color: #E94560; }
+
+  /* ===== GRID LAYOUT ===== */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+
+  .grid-3-1 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .card-header {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .card-subtitle {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+
+  .card-body { padding: 20px; }
+
+  /* ===== TABLE ===== */
+  .table-wrap { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+
+  th {
+    text-align: left;
+    padding: 10px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: middle;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tbody tr:hover td { background: var(--bg); }
+
+  /* ===== BADGES ===== */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .badge.green { background: #E8F5F2; color: #0A7D6C; }
+  .badge.green .badge-dot { background: #0A7D6C; }
+  .badge.orange { background: #FFF3E0; color: #E65100; }
+  .badge.orange .badge-dot { background: #E65100; }
+  .badge.blue { background: #EBF2FF; color: #1565C0; }
+  .badge.blue .badge-dot { background: #1565C0; }
+  .badge.red { background: #FEE9EE; color: #C62828; }
+  .badge.red .badge-dot { background: #C62828; }
+  .badge.gray { background: var(--bg); color: var(--text2); }
+  .badge.gray .badge-dot { background: var(--text3); }
+  .badge.gold { background: var(--gold-pale); color: #8B6914; }
+  .badge.gold .badge-dot { background: var(--gold); }
+
+  /* ===== ROOM STATUS GRID ===== */
+  .room-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+
+  .room-tile {
+    border-radius: 10px;
+    padding: 14px 12px;
+    cursor: pointer;
+    transition: all .2s;
+    border: 1.5px solid transparent;
+    text-align: center;
+  }
+
+  .room-tile:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+  .room-tile.available { background: #E8F5F2; border-color: #A8D5C8; }
+  .room-tile.occupied { background: #FEE9EE; border-color: #F4AABB; }
+  .room-tile.cleaning { background: #FFF3E0; border-color: #FFD180; }
+  .room-tile.reserved { background: #EBF2FF; border-color: #90B8F8; }
+  .room-tile.maintenance { background: #F3F0F5; border-color: #C5B8D0; }
+
+  .room-tile .room-no {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .room-tile.available .room-no { color: #0A7D6C; }
+  .room-tile.occupied .room-no { color: #C62828; }
+  .room-tile.cleaning .room-no { color: #E65100; }
+  .room-tile.reserved .room-no { color: #1565C0; }
+  .room-tile.maintenance .room-no { color: #6A5B7A; }
+
+  .room-tile .room-type {
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.7;
+  }
+
+  .room-tile .room-icon {
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  /* ===== REVENUE CHART (CSS-ONLY) ===== */
+  .chart-area {
+    height: 160px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 0 4px;
+  }
+
+  .bar-group {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .bars-wrap {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 100%;
+  }
+
+  .bar {
+    flex: 1;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+    transition: opacity .2s;
+    min-width: 8px;
+  }
+
+  .bar:hover { opacity: 0.8; }
+  .bar.rev { background: linear-gradient(180deg, var(--gold), #B8912A); }
+  .bar.cost { background: linear-gradient(180deg, #c8d4e8, #9aabc4); }
+
+  .bar-label {
+    font-size: 10px;
+    color: var(--text3);
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  .chart-labels {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .chart-legend {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--text2);
+  }
+
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 2px;
+  }
+
+  /* ===== PIE CHART (CSS) ===== */
+  .donut-wrap {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
+  }
+
+  .donut-svg { width: 130px; height: 130px; transform: rotate(-90deg); }
+
+  .donut-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .donut-val {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1;
+  }
+
+  .donut-unit { font-size: 11px; color: var(--text3); }
+
+  .legend-list { margin-top: 16px; }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12.5px;
+  }
+
+  .legend-item:last-child { border-bottom: none; }
+
+  .legend-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text2);
+  }
+
+  .legend-color {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .legend-pct {
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  /* ===== FORM STYLES ===== */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-control {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 13.5px;
+    color: var(--text);
+    background: var(--bg2);
+    outline: none;
+    transition: border-color .2s;
+  }
+
+  .form-control:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.12); }
+
+  select.form-control { cursor: pointer; }
+  textarea.form-control { resize: vertical; min-height: 80px; }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26,26,46,0.55);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+  }
+
+  .modal-overlay.show { display: flex; }
+
+  .modal {
+    background: var(--bg2);
+    border-radius: 16px;
+    width: 560px;
+    max-width: 95vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    animation: modal-in .25s ease;
+  }
+
+  @keyframes modal-in {
+    from { opacity: 0; transform: scale(0.95) translateY(-10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal-header {
+    padding: 22px 24px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .modal-close {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--text3);
+    transition: all .2s;
+  }
+
+  .modal-close:hover { background: var(--bg); color: var(--text); }
+  .modal-body { padding: 22px 24px; }
+  .modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  /* ===== ROOM DETAIL CARD ===== */
+  .room-detail {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+
+  .room-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    cursor: pointer;
+    transition: all .25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .room-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-3px);
+  }
+
+  .room-card .room-thumb {
+    width: 100%;
+    height: 100px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    object-fit: cover;
+    background: linear-gradient(135deg, var(--dark3), var(--dark2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+  }
+
+  .room-number {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    margin-bottom: 2px;
+  }
+
+  .room-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .room-features {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .feature-tag {
+    font-size: 10.5px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text2);
+    font-weight: 500;
+  }
+
+  .room-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .room-price span {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text3);
+  }
+
+  /* ===== FILTER BAR ===== */
+  .filter-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .filter-chip {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--bg2);
+    color: var(--text2);
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+    font-family: inherit;
+  }
+
+  .filter-chip:hover { border-color: var(--gold); color: var(--gold); }
+  .filter-chip.active { background: var(--gold); border-color: var(--gold); color: white; }
+
+  /* ===== TIMELINE ===== */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0; bottom: 0;
+    width: 1.5px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 4px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg2);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+
+  .timeline-time {
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 3px;
+  }
+
+  .timeline-text {
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .timeline-sub {
+    font-size: 12px;
+    color: var(--text2);
+    margin-top: 2px;
+  }
+
+  /* ===== RECOMMENDATION ===== */
+  .recommend-card {
+    background: linear-gradient(135deg, #FDF6E3 0%, #FFF9EC 100%);
+    border: 1px solid #E8CB7D;
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .recommend-card:hover { box-shadow: 0 4px 16px rgba(201,168,76,0.2); transform: translateY(-1px); }
+
+  .recommend-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .recommend-info { flex: 1; }
+  .recommend-info .r-label { font-size: 11px; font-weight: 600; color: #8B6914; text-transform: uppercase; letter-spacing: 0.5px; }
+  .recommend-info .r-name { font-size: 14px; font-weight: 600; color: var(--dark); margin: 2px 0; }
+  .recommend-info .r-why { font-size: 12px; color: var(--text2); }
+
+  .recommend-match {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ===== PAGE HEADER ===== */
+  .page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+
+  .page-desc {
+    font-size: 13px;
+    color: var(--text2);
+    margin-top: 4px;
+  }
+
+  /* ===== ACTIONS ===== */
+  .action-btn {
+    width: 30px; height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--text2);
+    transition: all .15s;
+    margin-right: 4px;
+  }
+
+  .action-btn:hover { background: var(--bg); color: var(--dark); border-color: var(--text3); }
+  .action-btn.danger:hover { background: #FEE9EE; color: var(--accent); border-color: #F4AABB; }
+
+  /* ===== PROGRESS BARS ===== */
+  .progress-bar {
+    height: 6px;
+    background: var(--bg);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1100px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .room-detail { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .page.active > * {
+    animation: fadeUp .3s ease;
+  }
+
+  /* Invoice styles */
+  .invoice-header {
+    background: linear-gradient(135deg, var(--dark), var(--dark2));
+    color: white;
+    padding: 24px;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .invoice-no {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .invoice-table td { font-size: 13px; }
+
+  .invoice-total {
+    background: var(--gold-pale);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+  }
+
+  .invoice-total-label { font-size: 14px; font-weight: 600; color: var(--text2); }
+  .invoice-total-val { font-size: 24px; font-weight: 700; color: var(--dark); }
+
+  /* Staff page */
+  .staff-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .staff-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+
+  .staff-avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+  }
+
+  .staff-name { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+  .staff-role { font-size: 12px; color: var(--text2); margin-bottom: 8px; }
+  .staff-shift { font-size: 11px; }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--dark);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: var(--shadow-lg);
+    z-index: 9999;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all .3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast-icon { font-size: 16px; }
+
+  /* Tag input */
+  .amenity-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .amenity-tag {
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--gold-pale);
+    border: 1px solid #E8CB7D;
+    font-size: 12px;
+    color: #8B6914;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .amenity-tag button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #C9A84C;
+    font-size: 13px;
+    line-height: 1;
+    padding: 0;
+    display: flex;
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-text">✦ LuxeStay</div>
+    <div class="logo-sub">Hotel Management</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Tổng quan</div>
+    <div class="nav-item active" onclick="showPage('dashboard', this)">
+      <span class="icon">📊</span> Dashboard
+    </div>
+
+    <div class="nav-section-label">Quản lý</div>
+    <div class="nav-item" onclick="showPage('rooms', this)">
+      <span class="icon">🏨</span> Phòng khách sạn
+    </div>
+    <div class="nav-item" onclick="showPage('booking', this)">
+      <span class="icon">📅</span> Đặt phòng
+      <span class="nav-badge">3</span>
+    </div>
+    <div class="nav-item" onclick="showPage('guests', this)">
+      <span class="icon">👥</span> Khách hàng
+    </div>
+    <div class="nav-item" onclick="showPage('services', this)">
+      <span class="icon">🛎️</span> Dịch vụ
+    </div>
+    <div class="nav-item" onclick="showPage('staff', this)">
+      <span class="icon">👔</span> Nhân viên
+    </div>
+    <div class="nav-item" onclick="showPage('invoices', this)">
+      <span class="icon">💳</span> Hóa đơn
+    </div>
+
+    <div class="nav-section-label">Báo cáo</div>
+    <div class="nav-item" onclick="showPage('reports', this)">
+      <span class="icon">📈</span> Thống kê doanh thu
+    </div>
+    <div class="nav-item" onclick="showPage('recommend', this)">
+      <span class="icon">✨</span> Gợi ý phòng (AI)
+    </div>
+    <div class="nav-item" onclick="showPage('roomstatus', this)">
+      <span class="icon">🔍</span> Tình trạng phòng
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="avatar">AD</div>
+      <div class="user-info">
+        <div class="name">Admin Khách Sạn</div>
+        <div class="role">Quản lý cấp cao</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-title">LuxeStay <span>✦</span> Hotel</div>
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" placeholder="Tìm phòng, khách hàng, hóa đơn...">
+    </div>
+    <div class="notif-btn" onclick="toast('Bạn có 3 thông báo mới!')">
+      🔔<div class="notif-dot"></div>
+    </div>
+    <button class="topbar-btn btn-primary" onclick="showModal('new-booking-modal')">+ Đặt phòng mới</button>
+  </header>
+
+  <div class="content">
+
+    <!-- ===== DASHBOARD ===== -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Dashboard Tổng quan</div>
+          <div class="page-desc">Thứ Hai, 04 tháng 05 năm 2026 — Hôm nay có 12 check-in, 8 check-out</div>
+        </div>
+        <button class="topbar-btn btn-ghost" onclick="toast('Đang xuất báo cáo...')">📄 Xuất báo cáo</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card gold">
+          <div class="stat-icon">🏨</div>
+          <div class="stat-val">45/60</div>
+          <div class="stat-label">Phòng đang sử dụng</div>
+          <div class="stat-change up">↑ 75%</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-icon">💰</div>
+          <div class="stat-val">128M₫</div>
+          <div class="stat-label">Doanh thu tháng này</div>
+          <div class="stat-change up">↑ 12%</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-icon">📅</div>
+          <div class="stat-val">37</div>
+          <div class="stat-label">Đặt phòng chờ xác nhận</div>
+          <div class="stat-change up">↑ 8%</div>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-val">4.8</div>
+          <div class="stat-label">Đánh giá trung bình</div>
+          <div class="stat-change up">↑ 0.2</div>
+        </div>
+      </div>
+
+      <div class="grid-3-1">
+        <!-- Revenue Chart -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Doanh thu theo tháng</div>
+              <div class="card-subtitle">So sánh doanh thu và chi phí năm 2026</div>
+            </div>
+            <div class="chart-labels">
+              <div class="chart-legend"><div class="legend-dot" style="background:var(--gold)"></div> Doanh thu</div>
+              <div class="chart-legend"><div class="legend-dot" style="background:#c8d4e8"></div> Chi phí</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="chart-area" id="main-chart"></div>
+            <div style="display:flex;gap:10px;margin-top:8px;" id="chart-months"></div>
+          </div>
+        </div>
+
+        <!-- Donut Chart -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Loại phòng</div>
+              <div class="card-subtitle">Tỷ lệ đặt phòng</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="donut-wrap">
+              <svg class="donut-svg" viewBox="0 0 42 42">
+                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#E8CB7D" stroke-width="5" stroke-dasharray="40 60" stroke-dashoffset="25"/>
+                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#0A7D6C" stroke-width="5" stroke-dasharray="25 75" stroke-dashoffset="-15"/>
+                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#3A86FF" stroke-width="5" stroke-dasharray="20 80" stroke-dashoffset="-40"/>
+                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#E94560" stroke-width="5" stroke-dasharray="15 85" stroke-dashoffset="-60"/>
+              </svg>
+              <div class="donut-center">
+                <div class="donut-val">60</div>
+                <div class="donut-unit">phòng</div>
+              </div>
+            </div>
+            <div class="legend-list">
+              <div class="legend-item"><div class="legend-name"><div class="legend-color" style="background:#E8CB7D"></div>Standard</div><div class="legend-pct">40%</div></div>
+              <div class="legend-item"><div class="legend-name"><div class="legend-color" style="background:#0A7D6C"></div>Deluxe</div><div class="legend-pct">25%</div></div>
+              <div class="legend-item"><div class="legend-name"><div class="legend-color" style="background:#3A86FF"></div>Suite</div><div class="legend-pct">20%</div></div>
+              <div class="legend-item"><div class="legend-name"><div class="legend-color" style="background:#E94560"></div>Presidential</div><div class="legend-pct">15%</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Recent Bookings -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Đặt phòng gần đây</div>
+            </div>
+            <button class="topbar-btn btn-ghost" onclick="showPage('booking', document.querySelector('[onclick*=booking]'))">Xem tất cả</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Khách hàng</th>
+                  <th>Phòng</th>
+                  <th>Check-in</th>
+                  <th>Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Nguyễn Văn An</strong></td>
+                  <td>Suite 501</td>
+                  <td>04/05/2026</td>
+                  <td><span class="badge green"><span class="badge-dot"></span>Đã xác nhận</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Trần Thị Bích</strong></td>
+                  <td>Deluxe 302</td>
+                  <td>05/05/2026</td>
+                  <td><span class="badge orange"><span class="badge-dot"></span>Chờ xác nhận</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Lê Minh Cường</strong></td>
+                  <td>Standard 101</td>
+                  <td>04/05/2026</td>
+                  <td><span class="badge blue"><span class="badge-dot"></span>Check-in</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Phạm Thu Hương</strong></td>
+                  <td>Presidential P01</td>
+                  <td>06/05/2026</td>
+                  <td><span class="badge gold"><span class="badge-dot"></span>VIP</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Activity -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Hoạt động hôm nay</div>
+          </div>
+          <div class="card-body">
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-time">08:30</div>
+                <div class="timeline-text">Check-in: Nguyễn Văn An</div>
+                <div class="timeline-sub">Suite 501 — 3 đêm</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-time">09:15</div>
+                <div class="timeline-text">Dọn phòng hoàn thành</div>
+                <div class="timeline-sub">Phòng 201, 202, 203</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-time">10:00</div>
+                <div class="timeline-text">Check-out: Hoàng Gia Bảo</div>
+                <div class="timeline-sub">Deluxe 304 — Thanh toán 4.2M₫</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-time">11:30</div>
+                <div class="timeline-text">Đặt dịch vụ Spa</div>
+                <div class="timeline-sub">Phòng 501 — 14:00 hôm nay</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-time">13:00</div>
+                <div class="timeline-text">Đặt phòng mới online</div>
+                <div class="timeline-sub">Standard 105 — Trần Thị Bích</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ROOMS PAGE ===== -->
+    <div class="page" id="page-rooms">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Quản lý Phòng</div>
+          <div class="page-desc">60 phòng — 45 đang sử dụng · 8 trống · 5 đang dọn · 2 bảo trì</div>
+        </div>
+        <button class="topbar-btn btn-primary" onclick="showModal('add-room-modal')">+ Thêm phòng</button>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-chip active" onclick="filterRooms('all', this)">Tất cả (60)</button>
+        <button class="filter-chip" onclick="filterRooms('standard', this)">Standard</button>
+        <button class="filter-chip" onclick="filterRooms('deluxe', this)">Deluxe</button>
+        <button class="filter-chip" onclick="filterRooms('suite', this)">Suite</button>
+        <button class="filter-chip" onclick="filterRooms('presidential', this)">Presidential</button>
+      </div>
+      <div class="room-detail" id="rooms-grid"></div>
+    </div>
+
+    <!-- ===== BOOKING PAGE ===== -->
+    <div class="page" id="page-booking">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Quản lý Đặt Phòng</div>
+          <div class="page-desc">Tháng 05/2026 — 37 đặt phòng chờ xác nhận</div>
+        </div>
+        <button class="topbar-btn btn-primary" onclick="showModal('new-booking-modal')">+ Đặt phòng mới</button>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Danh sách đặt phòng</div>
+          <div style="display:flex;gap:8px">
+            <select class="form-control" style="padding:6px 10px;font-size:12px">
+              <option>Tất cả trạng thái</option>
+              <option>Đã xác nhận</option>
+              <option>Chờ xác nhận</option>
+              <option>Check-in</option>
+              <option>Check-out</option>
+              <option>Đã hủy</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Mã ĐP</th>
+                <th>Khách hàng</th>
+                <th>Phòng</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Số đêm</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="booking-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== GUESTS PAGE ===== -->
+    <div class="page" id="page-guests">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Quản lý Khách hàng</div>
+          <div class="page-desc">Tổng 284 khách hàng — 42 VIP · 18 thành viên Vàng</div>
+        </div>
+        <button class="topbar-btn btn-primary" onclick="showModal('add-guest-modal')">+ Thêm khách hàng</button>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Danh sách khách hàng</div></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Khách hàng</th>
+                <th>CCCD / Hộ chiếu</th>
+                <th>Điện thoại</th>
+                <th>Email</th>
+                <th>Số lần đặt</th>
+                <th>Tổng chi tiêu</th>
+                <th>Hạng</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="guests-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SERVICES PAGE ===== -->
+    <div class="page" id="page-services">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Quản lý Dịch vụ</div>
+          <div class="page-desc">Ăn uống · Giặt ủi · Spa · Thuê xe · Mini bar</div>
+        </div>
+        <button class="topbar-btn btn-primary" onclick="showModal('add-service-modal')">+ Thêm đơn dịch vụ</button>
+      </div>
+      <div class="stats-grid" style="grid-template-columns:repeat(5,1fr)">
+        <div class="stat-card gold" style="cursor:pointer">
+          <div class="stat-icon">🍽️</div>
+          <div class="stat-val">24</div>
+          <div class="stat-label">Ăn uống hôm nay</div>
+        </div>
+        <div class="stat-card green" style="cursor:pointer">
+          <div class="stat-icon">👕</div>
+          <div class="stat-val">12</div>
+          <div class="stat-label">Giặt ủi</div>
+        </div>
+        <div class="stat-card blue" style="cursor:pointer">
+          <div class="stat-icon">💆</div>
+          <div class="stat-val">8</div>
+          <div class="stat-label">Spa & Wellness</div>
+        </div>
+        <div class="stat-card red" style="cursor:pointer">
+          <div class="stat-icon">🚗</div>
+          <div class="stat-val">5</div>
+          <div class="stat-label">Thuê xe</div>
+        </div>
+        <div class="stat-card gold" style="cursor:pointer">
+          <div class="stat-icon">🍺</div>
+          <div class="stat-val">31</div>
+          <div class="stat-label">Mini bar</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Đơn dịch vụ hôm nay</div></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Phòng</th>
+                <th>Loại dịch vụ</th>
+                <th>Chi tiết</th>
+                <th>Thời gian</th>
+                <th>Số tiền</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="services-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STAFF PAGE ===== -->
+    <div class="page" id="page-staff">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Quản lý Nhân viên</div>
+          <div class="page-desc">32 nhân viên — Ca sáng: 14 · Ca chiều: 11 · Ca đêm: 7</div>
+        </div>
+        <button class="topbar-btn btn-primary" onclick="showModal('add-staff-modal')">+ Thêm nhân viên</button>
+      </div>
+      <div id="staff-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px"></div>
+    </div>
+
+    <!-- ===== INVOICES PAGE ===== -->
+    <div class="page" id="page-invoices">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Hóa đơn & Thanh toán</div>
+          <div class="page-desc">Tháng 05/2026 — Tổng thu: 128M₫ · Chưa thanh toán: 12M₫</div>
+        </div>
+        <button class="topbar-btn btn-primary" onclick="showModal('invoice-modal')">🖨️ Tạo hóa đơn</button>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Danh sách hóa đơn</div></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Số HĐ</th>
+                <th>Khách hàng</th>
+                <th>Phòng</th>
+                <th>Ngày xuất</th>
+                <th>Tiền phòng</th>
+                <th>Dịch vụ</th>
+                <th>Tổng cộng</th>
+                <th>Thanh toán</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="invoices-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== REPORTS PAGE ===== -->
+    <div class="page" id="page-reports">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Thống kê Doanh thu</div>
+          <div class="page-desc">Phân tích doanh thu theo ngày / tháng / năm</div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="filter-chip active" id="rpt-day" onclick="setReport('day',this)">Ngày</button>
+          <button class="filter-chip" id="rpt-month" onclick="setReport('month',this)">Tháng</button>
+          <button class="filter-chip" id="rpt-year" onclick="setReport('year',this)">Năm</button>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card gold"><div class="stat-icon">💰</div><div class="stat-val">4.2M₫</div><div class="stat-label">Doanh thu hôm nay</div><div class="stat-change up">↑ 8%</div></div>
+        <div class="stat-card green"><div class="stat-icon">📅</div><div class="stat-val">128M₫</div><div class="stat-label">Tháng này</div><div class="stat-change up">↑ 12%</div></div>
+        <div class="stat-card blue"><div class="stat-icon">📈</div><div class="stat-val">1.42B₫</div><div class="stat-label">Năm nay (2026)</div><div class="stat-change up">↑ 18%</div></div>
+        <div class="stat-card red"><div class="stat-icon">🏆</div><div class="stat-val">75%</div><div class="stat-label">Tỉ lệ lấp phòng</div><div class="stat-change up">↑ 5%</div></div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Biểu đồ doanh thu</div></div>
+          <div class="card-body">
+            <div class="chart-area" id="report-chart"></div>
+            <div style="display:flex;gap:10px;margin-top:8px" id="report-chart-labels"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Top dịch vụ doanh thu</div></div>
+          <div class="card-body" id="service-revenue"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== RECOMMEND PAGE ===== -->
+    <div class="page" id="page-recommend">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Gợi ý Phòng (AI System)</div>
+          <div class="page-desc">Đề xuất phòng phù hợp dựa trên lịch sử & sở thích khách hàng</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">Chọn khách hàng</div><div class="card-subtitle">Hệ thống sẽ phân tích lịch sử và gợi ý</div></div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-label">Tìm khách hàng</label>
+              <select class="form-control" onchange="updateRecommend(this.value)">
+                <option value="">-- Chọn khách hàng --</option>
+                <option value="0">Nguyễn Văn An (VIP)</option>
+                <option value="1">Trần Thị Bích</option>
+                <option value="2">Lê Minh Cường</option>
+                <option value="3">Phạm Thu Hương (VIP Gold)</option>
+              </select>
+            </div>
+            <div id="guest-profile" style="margin-top:16px;display:none">
+              <div class="card-title" style="font-size:13px;margin-bottom:10px">Hồ sơ sở thích</div>
+              <div id="profile-content"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Phòng được gợi ý</div></div>
+          <div class="card-body" id="recommend-results">
+            <div style="text-align:center;padding:30px;color:var(--text3)">
+              <div style="font-size:40px;margin-bottom:12px">✨</div>
+              <div>Chọn khách hàng để xem gợi ý phòng phù hợp</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ROOM STATUS PAGE ===== -->
+    <div class="page" id="page-roomstatus">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Tình trạng Phòng</div>
+          <div class="page-desc">Theo dõi real-time tình trạng 60 phòng</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="badge green" style="padding:5px 12px"><span class="badge-dot"></span>Trống (8)</span>
+          <span class="badge red" style="padding:5px 12px"><span class="badge-dot"></span>Đang dùng (45)</span>
+          <span class="badge orange" style="padding:5px 12px"><span class="badge-dot"></span>Dọn phòng (5)</span>
+          <span class="badge blue" style="padding:5px 12px"><span class="badge-dot"></span>Đã đặt (2)</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="room-grid" id="room-status-grid"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- ===== MODALS ===== -->
+
+<!-- New Booking Modal -->
+<div class="modal-overlay" id="new-booking-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">📅 Tạo đặt phòng mới</div>
+      <button class="modal-close" onclick="closeModal('new-booking-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">Khách hàng</label><select class="form-control"><option>Nguyễn Văn An</option><option>Trần Thị Bích</option><option>+ Khách mới</option></select></div>
+        <div class="form-group"><label class="form-label">Loại phòng</label><select class="form-control"><option>Standard</option><option>Deluxe</option><option>Suite</option><option>Presidential</option></select></div>
+        <div class="form-group"><label class="form-label">Phòng</label><select class="form-control"><option>101 - Standard (1.2M₫/đêm)</option><option>201 - Deluxe (1.8M₫/đêm)</option><option>501 - Suite (3.5M₫/đêm)</option></select></div>
+        <div class="form-group"><label class="form-label">Số khách</label><input type="number" class="form-control" value="2" min="1"></div>
+        <div class="form-group"><label class="form-label">Check-in</label><input type="date" class="form-control" value="2026-05-04"></div>
+        <div class="form-group"><label class="form-label">Check-out</label><input type="date" class="form-control" value="2026-05-07"></div>
+        <div class="form-group full"><label class="form-label">Dịch vụ kèm theo</label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <label style="display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer"><input type="checkbox"> 🍽️ Ăn sáng</label>
+            <label style="display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer"><input type="checkbox"> 💆 Spa (1 lần)</label>
+            <label style="display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer"><input type="checkbox"> 🚗 Đưa đón sân bay</label>
+            <label style="display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer"><input type="checkbox"> 👕 Giặt ủi</label>
+          </div>
+        </div>
+        <div class="form-group full"><label class="form-label">Ghi chú đặc biệt</label><textarea class="form-control" placeholder="Yêu cầu đặc biệt, dị ứng thực phẩm..."></textarea></div>
+      </div>
+      <div style="background:var(--gold-pale);border-radius:8px;padding:14px;margin-top:12px;border:1px solid #E8CB7D">
+        <div style="font-size:12px;color:#8B6914;font-weight:600;margin-bottom:8px">TỔNG TIỀN DỰ KIẾN</div>
+        <div style="font-size:22px;font-weight:700;color:var(--dark)">3.600.000 ₫</div>
+        <div style="font-size:12px;color:var(--text2);margin-top:4px">Phòng Standard × 3 đêm (1.200.000₫/đêm)</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="topbar-btn btn-ghost" onclick="closeModal('new-booking-modal')">Hủy</button>
+      <button class="topbar-btn btn-primary" onclick="confirmBooking()">✓ Xác nhận đặt phòng</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Room Modal -->
+<div class="modal-overlay" id="add-room-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🏨 Thêm phòng mới</div>
+      <button class="modal-close" onclick="closeModal('add-room-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">Số phòng</label><input type="text" class="form-control" placeholder="VD: 601"></div>
+        <div class="form-group"><label class="form-label">Tầng</label><input type="number" class="form-control" placeholder="6"></div>
+        <div class="form-group"><label class="form-label">Loại phòng</label><select class="form-control"><option>Standard</option><option>Deluxe</option><option>Suite</option><option>Presidential</option></select></div>
+        <div class="form-group"><label class="form-label">Sức chứa (người)</label><input type="number" class="form-control" value="2"></div>
+        <div class="form-group"><label class="form-label">Diện tích (m²)</label><input type="number" class="form-control" placeholder="35"></div>
+        <div class="form-group"><label class="form-label">Giá/đêm (₫)</label><input type="number" class="form-control" placeholder="1200000"></div>
+        <div class="form-group full">
+          <label class="form-label">Tiện nghi</label>
+          <div class="amenity-tags" id="amenity-tags">
+            <div class="amenity-tag">WiFi <button onclick="removeTag(this)">×</button></div>
+            <div class="amenity-tag">Máy lạnh <button onclick="removeTag(this)">×</button></div>
+            <div class="amenity-tag">TV <button onclick="removeTag(this)">×</button></div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <input type="text" class="form-control" id="new-amenity" placeholder="Thêm tiện nghi..." style="flex:1">
+            <button class="topbar-btn btn-ghost" onclick="addAmenity()">+ Thêm</button>
+          </div>
+        </div>
+        <div class="form-group full"><label class="form-label">Mô tả</label><textarea class="form-control" placeholder="Mô tả phòng..."></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="topbar-btn btn-ghost" onclick="closeModal('add-room-modal')">Hủy</button>
+      <button class="topbar-btn btn-primary" onclick="saveRoom()">💾 Lưu phòng</button>
+    </div>
+  </div>
+</div>
+
+<!-- Invoice Modal -->
+<div class="modal-overlay" id="invoice-modal">
+  <div class="modal" style="width:620px">
+    <div class="modal-header">
+      <div class="modal-title">💳 Hóa đơn thanh toán</div>
+      <button class="modal-close" onclick="closeModal('invoice-modal')">✕</button>
+    </div>
+    <div class="modal-body" style="padding:0">
+      <div class="invoice-header">
+        <div>
+          <div class="invoice-no">HĐ-2026-0847</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px">Ngày xuất: 04/05/2026</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:18px;font-weight:700;color:white;font-family:'Playfair Display',serif">✦ LuxeStay Hotel</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px">123 Nguyễn Huệ, Q.1, TP.HCM</div>
+        </div>
+      </div>
+      <div style="padding:20px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+          <div style="background:var(--bg);border-radius:8px;padding:12px">
+            <div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:6px">THÔNG TIN KHÁCH</div>
+            <div style="font-size:14px;font-weight:600">Nguyễn Văn An</div>
+            <div style="font-size:12px;color:var(--text2)">0901 234 567</div>
+            <div style="font-size:12px;color:var(--text2)">an.nguyen@email.com</div>
+          </div>
+          <div style="background:var(--bg);border-radius:8px;padding:12px">
+            <div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:6px">THÔNG TIN PHÒNG</div>
+            <div style="font-size:14px;font-weight:600">Suite 501</div>
+            <div style="font-size:12px;color:var(--text2)">Check-in: 04/05/2026</div>
+            <div style="font-size:12px;color:var(--text2)">Check-out: 07/05/2026 (3 đêm)</div>
+          </div>
+        </div>
+        <table class="invoice-table" style="width:100%">
+          <thead><tr style="background:var(--bg)"><th>Mô tả</th><th style="text-align:right">SL</th><th style="text-align:right">Đơn giá</th><th style="text-align:right">Thành tiền</th></tr></thead>
+          <tbody>
+            <tr><td>Tiền phòng Suite 501</td><td style="text-align:right">3 đêm</td><td style="text-align:right">3.500.000₫</td><td style="text-align:right">10.500.000₫</td></tr>
+            <tr><td>🍽️ Ăn uống (room service)</td><td style="text-align:right">3</td><td style="text-align:right">450.000₫</td><td style="text-align:right">1.350.000₫</td></tr>
+            <tr><td>💆 Spa & Wellness</td><td style="text-align:right">2</td><td style="text-align:right">600.000₫</td><td style="text-align:right">1.200.000₫</td></tr>
+            <tr><td>👕 Giặt ủi</td><td style="text-align:right">1</td><td style="text-align:right">200.000₫</td><td style="text-align:right">200.000₫</td></tr>
+            <tr><td>🍺 Mini bar</td><td style="text-align:right">—</td><td style="text-align:right">—</td><td style="text-align:right">350.000₫</td></tr>
+          </tbody>
+        </table>
+        <div style="display:flex;justify-content:flex-end;padding:10px 16px;font-size:13px;color:var(--text2)">Thuế VAT (10%): 1.360.000₫</div>
+        <div class="invoice-total">
+          <div><div class="invoice-total-label">TỔNG CỘNG</div><div style="font-size:12px;color:var(--text3)">Thanh toán: Thẻ Visa *8814</div></div>
+          <div class="invoice-total-val">14.960.000 ₫</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="topbar-btn btn-ghost" onclick="closeModal('invoice-modal')">Đóng</button>
+      <button class="topbar-btn btn-ghost" onclick="toast('Đang in hóa đơn...')">🖨️ In hóa đơn</button>
+      <button class="topbar-btn btn-primary" onclick="toast('✓ Đã gửi email cho khách!');closeModal('invoice-modal')">📧 Gửi email</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Guest Modal -->
+<div class="modal-overlay" id="add-guest-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">👤 Thêm khách hàng</div>
+      <button class="modal-close" onclick="closeModal('add-guest-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">Họ và tên</label><input type="text" class="form-control" placeholder="Nguyễn Văn A"></div>
+        <div class="form-group"><label class="form-label">Giới tính</label><select class="form-control"><option>Nam</option><option>Nữ</option><option>Khác</option></select></div>
+        <div class="form-group"><label class="form-label">CCCD / Hộ chiếu</label><input type="text" class="form-control" placeholder="079000000000"></div>
+        <div class="form-group"><label class="form-label">Ngày sinh</label><input type="date" class="form-control"></div>
+        <div class="form-group"><label class="form-label">Điện thoại</label><input type="tel" class="form-control" placeholder="0901234567"></div>
+        <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-control" placeholder="email@example.com"></div>
+        <div class="form-group"><label class="form-label">Quốc tịch</label><select class="form-control"><option>Việt Nam</option><option>Mỹ</option><option>Anh</option><option>Nhật</option><option>Hàn Quốc</option></select></div>
+        <div class="form-group"><label class="form-label">Hạng thành viên</label><select class="form-control"><option>Thường</option><option>Bạc</option><option>Vàng</option><option>VIP</option></select></div>
+        <div class="form-group full"><label class="form-label">Địa chỉ</label><input type="text" class="form-control" placeholder="Địa chỉ thường trú"></div>
+        <div class="form-group full"><label class="form-label">Ghi chú</label><textarea class="form-control" placeholder="Sở thích, yêu cầu đặc biệt..."></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="topbar-btn btn-ghost" onclick="closeModal('add-guest-modal')">Hủy</button>
+      <button class="topbar-btn btn-primary" onclick="saveGuest()">💾 Lưu khách hàng</button>
+    </div>
+  </div>
+</div>
+
+<!-- Staff Modal -->
+<div class="modal-overlay" id="add-staff-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">👔 Thêm nhân viên</div>
+      <button class="modal-close" onclick="closeModal('add-staff-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">Họ và tên</label><input type="text" class="form-control"></div>
+        <div class="form-group"><label class="form-label">Chức vụ</label><select class="form-control"><option>Lễ tân</option><option>Buồng phòng</option><option>Nhà bếp</option><option>Bảo vệ</option><option>Kỹ thuật</option><option>Quản lý</option></select></div>
+        <div class="form-group"><label class="form-label">Ca làm việc</label><select class="form-control"><option>Ca sáng (6:00-14:00)</option><option>Ca chiều (14:00-22:00)</option><option>Ca đêm (22:00-6:00)</option></select></div>
+        <div class="form-group"><label class="form-label">Số điện thoại</label><input type="tel" class="form-control"></div>
+        <div class="form-group"><label class="form-label">Lương cơ bản (₫)</label><input type="number" class="form-control"></div>
+        <div class="form-group"><label class="form-label">Ngày vào làm</label><input type="date" class="form-control"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="topbar-btn btn-ghost" onclick="closeModal('add-staff-modal')">Hủy</button>
+      <button class="topbar-btn btn-primary" onclick="saveStaff()">💾 Lưu nhân viên</button>
+    </div>
+  </div>
+</div>
+
+<!-- Service Modal -->
+<div class="modal-overlay" id="add-service-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🛎️ Thêm đơn dịch vụ</div>
+      <button class="modal-close" onclick="closeModal('add-service-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">Phòng</label><select class="form-control"><option>101</option><option>201</option><option>301</option><option>501</option></select></div>
+        <div class="form-group"><label class="form-label">Loại dịch vụ</label><select class="form-control"><option>🍽️ Ăn uống</option><option>👕 Giặt ủi</option><option>💆 Spa</option><option>🚗 Thuê xe</option><option>🍺 Mini bar</option></select></div>
+        <div class="form-group full"><label class="form-label">Chi tiết</label><input type="text" class="form-control" placeholder="Mô tả dịch vụ..."></div>
+        <div class="form-group"><label class="form-label">Số lượng</label><input type="number" class="form-control" value="1"></div>
+        <div class="form-group"><label class="form-label">Đơn giá (₫)</label><input type="number" class="form-control"></div>
+        <div class="form-group"><label class="form-label">Thời gian</label><input type="datetime-local" class="form-control"></div>
+        <div class="form-group"><label class="form-label">Ghi chú</label><textarea class="form-control"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="topbar-btn btn-ghost" onclick="closeModal('add-service-modal')">Hủy</button>
+      <button class="topbar-btn btn-primary" onclick="saveService()">💾 Lưu dịch vụ</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon">✓</span>
+  <span id="toast-msg">Thao tác thành công!</span>
+</div>
+
+<script>
+// ===== DATA =====
+const rooms = [
+  {no:'101',name:'Standard Classic',type:'standard',floor:1,cap:2,area:30,price:1200000,status:'available',amenities:['WiFi','TV','Máy lạnh','Bồn tắm'],icon:'🛏️'},
+  {no:'102',name:'Standard Garden',type:'standard',floor:1,cap:2,area:32,price:1300000,status:'occupied',amenities:['WiFi','TV','Máy lạnh','Ban công'],icon:'🌿'},
+  {no:'201',name:'Deluxe City View',type:'deluxe',floor:2,cap:2,area:45,price:1800000,status:'occupied',amenities:['WiFi','TV','Mini bar','Ban công','Bồn tắm'],icon:'🌆'},
+  {no:'202',name:'Deluxe Pool View',type:'deluxe',floor:2,cap:3,area:48,price:2000000,status:'cleaning',amenities:['WiFi','TV','Mini bar','Hồ bơi'],icon:'🏊'},
+  {no:'301',name:'Junior Suite',type:'suite',floor:3,cap:2,area:65,price:2800000,status:'occupied',amenities:['WiFi','TV','Mini bar','Phòng khách','Jacuzzi'],icon:'⭐'},
+  {no:'302',name:'Executive Suite',type:'suite',floor:3,cap:4,area:80,price:3500000,status:'reserved',amenities:['WiFi','TV','Mini bar','Phòng khách','Jacuzzi','Ban công'],icon:'💫'},
+  {no:'401',name:'Deluxe King',type:'deluxe',floor:4,cap:2,area:50,price:2100000,status:'occupied',amenities:['WiFi','TV','Mini bar','Giường King'],icon:'👑'},
+  {no:'501',name:'Presidential Suite',type:'presidential',floor:5,cap:6,area:150,price:8000000,status:'occupied',amenities:['WiFi','TV','Mini bar','Phòng khách','Bếp','Jacuzzi','Ban công lớn','Butler'],icon:'🏆'},
+];
+
+const bookings = [
+  {id:'BK001',guest:'Nguyễn Văn An',room:'Suite 501',checkin:'04/05/2026',checkout:'07/05/2026',nights:3,total:'10.500.000₫',status:'checkin'},
+  {id:'BK002',guest:'Trần Thị Bích',room:'Standard 105',checkin:'05/05/2026',checkout:'08/05/2026',nights:3,total:'3.600.000₫',status:'pending'},
+  {id:'BK003',guest:'Lê Minh Cường',room:'Deluxe 201',checkin:'04/05/2026',checkout:'06/05/2026',nights:2,total:'3.600.000₫',status:'confirmed'},
+  {id:'BK004',guest:'Phạm Thu Hương',room:'Presidential P01',checkin:'06/05/2026',checkout:'10/05/2026',nights:4,total:'32.000.000₫',status:'vip'},
+  {id:'BK005',guest:'Hoàng Gia Bảo',room:'Deluxe 302',checkin:'01/05/2026',checkout:'04/05/2026',nights:3,total:'5.400.000₫',status:'checkout'},
+  {id:'BK006',guest:'Võ Thị Lan',room:'Standard 103',checkin:'07/05/2026',checkout:'10/05/2026',nights:3,total:'3.900.000₫',status:'confirmed'},
+];
+
+const guests = [
+  {name:'Nguyễn Văn An',id:'079000001234',phone:'0901 234 567',email:'an.nguyen@email.com',bookings:12,spent:'48.500.000₫',rank:'vip'},
+  {name:'Trần Thị Bích',id:'079000005678',phone:'0912 345 678',email:'bich.tran@email.com',bookings:5,spent:'18.200.000₫',rank:'silver'},
+  {name:'Lê Minh Cường',id:'079000009012',phone:'0923 456 789',email:'cuong.le@email.com',bookings:3,spent:'9.800.000₫',rank:'normal'},
+  {name:'Phạm Thu Hương',id:'B1234567',phone:'0934 567 890',email:'huong.pham@email.com',bookings:28,spent:'215.000.000₫',rank:'gold'},
+  {name:'Hoàng Gia Bảo',id:'079000003456',phone:'0945 678 901',email:'bao.hoang@email.com',bookings:7,spent:'32.400.000₫',rank:'silver'},
+  {name:'Võ Thị Lan',id:'079000007890',phone:'0956 789 012',email:'lan.vo@email.com',bookings:2,spent:'6.200.000₫',rank:'normal'},
+];
+
+const services = [
+  {room:'501',type:'🍽️ Ăn uống',detail:'Bữa sáng American & cà phê',time:'07:30',amount:'450.000₫',status:'done'},
+  {room:'201',type:'👕 Giặt ủi',detail:'5 áo sơ mi, 3 quần',time:'08:00',amount:'200.000₫',status:'processing'},
+  {room:'501',type:'💆 Spa',detail:'Swedish Massage 90 phút',time:'14:00',amount:'600.000₫',status:'pending'},
+  {room:'301',type:'🚗 Thuê xe',detail:'Xe 7 chỗ - tham quan TP',time:'09:00',amount:'850.000₫',status:'done'},
+  {room:'102',type:'🍺 Mini bar',detail:'2x Heineken, 1x Whisky JW',time:'21:30',amount:'350.000₫',status:'done'},
+  {room:'401',type:'🍽️ Ăn uống',detail:'Room service - Cơm tối',time:'19:00',amount:'280.000₫',status:'pending'},
+];
+
+const staffData = [
+  {name:'Lê Thị Loan',role:'Lễ tân',shift:'Sáng',color:'#3A86FF',status:'online'},
+  {name:'Nguyễn Hoàng Nam',role:'Bảo vệ',shift:'Đêm',color:'#E94560',status:'online'},
+  {name:'Trần Minh Thư',role:'Buồng phòng',shift:'Sáng',color:'#0A7D6C',status:'online'},
+  {name:'Phạm Quốc Hùng',role:'Nhà bếp',shift:'Chiều',color:'#C9A84C',status:'break'},
+  {name:'Hoàng Lan Chi',role:'Spa',shift:'Chiều',color:'#9B59B6',status:'online'},
+  {name:'Võ Thanh Tùng',role:'Kỹ thuật',shift:'Sáng',color:'#E67E22',status:'online'},
+  {name:'Đặng Thu Hà',role:'Quản lý',shift:'Hành chính',color:'#2C3E50',status:'online'},
+  {name:'Ngô Văn Khoa',role:'Lễ tân',shift:'Chiều',color:'#3A86FF',status:'offline'},
+];
+
+const invoicesData = [
+  {no:'HĐ-2026-0847',guest:'Nguyễn Văn An',room:'Suite 501',date:'04/05/2026',room_fee:'10.500.000₫',service:'2.550.000₫',total:'14.960.000₫',pay:'Visa',status:'paid'},
+  {no:'HĐ-2026-0846',guest:'Hoàng Gia Bảo',room:'Deluxe 302',date:'04/05/2026',room_fee:'5.400.000₫',service:'890.000₫',total:'7.029.000₫',pay:'Tiền mặt',status:'paid'},
+  {no:'HĐ-2026-0845',guest:'Phạm Thu Hương',room:'Presidential P01',date:'10/05/2026',room_fee:'32.000.000₫',service:'5.200.000₫',total:'40.920.000₫',pay:'Chuyển khoản',status:'pending'},
+  {no:'HĐ-2026-0844',guest:'Lê Minh Cường',room:'Deluxe 201',date:'06/05/2026',room_fee:'3.600.000₫',service:'450.000₫',total:'4.455.000₫',pay:'Momo',status:'pending'},
+];
+
+const recommendations = [
+  {
+    guestProfile: {
+      name: 'Nguyễn Văn An',
+      prefs: [{icon:'🛏️',label:'Loại phòng hay chọn',val:'Suite, Presidential'},{icon:'💰',label:'Mức giá thường đặt',val:'3-10M₫/đêm'},{icon:'🏙️',label:'Tiện nghi ưa thích',val:'Ban công, Jacuzzi, View thành phố'},{icon:'📅',label:'Số lần đặt phòng',val:'12 lần'}]
+    },
+    rooms:[
+      {icon:'💫',name:'Executive Suite 302',why:'Ban công, Jacuzzi, View TP — phù hợp sở thích',match:'96%',price:'3.500.000₫/đêm'},
+      {icon:'🏆',name:'Presidential Suite P01',why:'Hạng phòng cao nhất, đầy đủ tiện nghi ưa thích',match:'92%',price:'8.000.000₫/đêm'},
+      {icon:'⭐',name:'Junior Suite 301',why:'Phong cách tương tự, giá tối ưu hơn',match:'85%',price:'2.800.000₫/đêm'},
+    ]
+  },
+  {
+    guestProfile: {
+      name: 'Trần Thị Bích',
+      prefs: [{icon:'🛏️',label:'Loại phòng hay chọn',val:'Standard, Deluxe'},{icon:'💰',label:'Mức giá thường đặt',val:'1-2M₫/đêm'},{icon:'🌿',label:'Tiện nghi ưa thích',val:'Ban công, Yên tĩnh, WiFi tốt'},{icon:'📅',label:'Số lần đặt phòng',val:'5 lần'}]
+    },
+    rooms:[
+      {icon:'🌿',name:'Standard Garden 102',why:'Ban công nhìn vườn, yên tĩnh — đúng sở thích',match:'94%',price:'1.300.000₫/đêm'},
+      {icon:'🌆',name:'Deluxe City View 201',why:'Nâng cấp nhẹ, ban công view đẹp hơn',match:'80%',price:'1.800.000₫/đêm'},
+      {icon:'🛏️',name:'Standard Classic 101',why:'Phòng quen thuộc, giá tốt',match:'75%',price:'1.200.000₫/đêm'},
+    ]
+  },
+];
+
+const revenueData = [42,58,71,63,85,92,78,95,88,102,115,128];
+const months = ['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12'];
+const maxRev = Math.max(...revenueData);
+
+// ===== INIT =====
+function init() {
+  renderChart('main-chart', 'chart-months', revenueData, months);
+  renderChart('report-chart', 'report-chart-labels', revenueData, months);
+  renderRooms();
+  renderBookings();
+  renderGuests();
+  renderServices();
+  renderStaff();
+  renderInvoices();
+  renderRoomStatus();
+  renderServiceRevenue();
+}
+
+// ===== CHART =====
+function renderChart(chartId, labelsId, data, labels) {
+  const chart = document.getElementById(chartId);
+  const labelsEl = document.getElementById(labelsId);
+  if (!chart) return;
+  const mx = Math.max(...data);
+  chart.innerHTML = data.map((v,i) => {
+    const costH = Math.round((v * 0.55 / mx) * 140);
+    const revH = Math.round((v / mx) * 140);
+    return `<div class="bar-group" style="align-items:center;flex-direction:column">
+      <div class="bars-wrap">
+        <div class="bar rev" style="height:${revH}px" title="${v}M₫"></div>
+        <div class="bar cost" style="height:${costH}px" title="${Math.round(v*0.55)}M₫"></div>
+      </div>
+    </div>`;
+  }).join('');
+  if (labelsEl) labelsEl.innerHTML = labels.map((l,i) => `<div style="flex:1;text-align:center;font-size:10px;color:var(--text3)">${l}</div>`).join('');
+}
+
+// ===== ROOMS =====
+function renderRooms(filter='all') {
+  const grid = document.getElementById('rooms-grid');
+  if (!grid) return;
+  const filtered = filter === 'all' ? rooms : rooms.filter(r => r.type === filter);
+  grid.innerHTML = filtered.map(r => `
+    <div class="room-card" onclick="toast('Phòng ${r.no}: ${r.name}')">
+      <div class="room-thumb">${r.icon}</div>
+      <div class="room-number">Phòng ${r.no} · Tầng ${r.floor}</div>
+      <div class="room-name">${r.name}</div>
+      <div class="room-features">
+        ${r.amenities.slice(0,3).map(a => `<span class="feature-tag">${a}</span>`).join('')}
+        ${r.amenities.length > 3 ? `<span class="feature-tag">+${r.amenities.length-3}</span>` : ''}
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="room-price">${r.price.toLocaleString()}₫ <span>/đêm</span></div>
+        <span class="badge ${r.status==='available'?'green':r.status==='occupied'?'red':r.status==='cleaning'?'orange':'blue'}">
+          <span class="badge-dot"></span>${r.status==='available'?'Trống':r.status==='occupied'?'Đang dùng':r.status==='cleaning'?'Dọn phòng':'Đã đặt'}
+        </span>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+        <span style="font-size:11px;color:var(--text3)">👤 ${r.cap} người · 📐 ${r.area}m²</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterRooms(type, btn) {
+  document.querySelectorAll('.filter-bar .filter-chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderRooms(type);
+}
+
+// ===== BOOKINGS =====
+const statusMap = {checkin:{cls:'blue',label:'Check-in'},confirmed:{cls:'green',label:'Xác nhận'},pending:{cls:'orange',label:'Chờ duyệt'},checkout:{cls:'gray',label:'Check-out'},vip:{cls:'gold',label:'VIP'}};
+
+function renderBookings() {
+  const tbody = document.getElementById('booking-table-body');
+  if (!tbody) return;
+  tbody.innerHTML = bookings.map(b => {
+    const s = statusMap[b.status] || {cls:'gray',label:b.status};
+    return `<tr>
+      <td><span style="font-family:monospace;font-size:12px;color:var(--text3)">${b.id}</span></td>
+      <td><strong>${b.guest}</strong></td>
+      <td>${b.room}</td>
+      <td>${b.checkin}</td>
+      <td>${b.checkout}</td>
+      <td>${b.nights} đêm</td>
+      <td><strong>${b.total}</strong></td>
+      <td><span class="badge ${s.cls}"><span class="badge-dot"></span>${s.label}</span></td>
+      <td>
+        <button class="action-btn" onclick="toast('Xem chi tiết: ${b.id}')">👁️</button>
+        <button class="action-btn" onclick="showModal('invoice-modal')">🧾</button>
+        <button class="action-btn danger" onclick="toast('Đã hủy đặt phòng ${b.id}')">🗑️</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+// ===== GUESTS =====
+const rankMap = {vip:{cls:'red',label:'VIP ⭐'},gold:{cls:'gold',label:'Vàng 🥇'},silver:{cls:'blue',label:'Bạc 🥈'},normal:{cls:'gray',label:'Thường'}};
+
+function renderGuests() {
+  const tbody = document.getElementById('guests-table-body');
+  if (!tbody) return;
+  tbody.innerHTML = guests.map(g => {
+    const r = rankMap[g.rank] || rankMap.normal;
+    const initials = g.name.split(' ').slice(-2).map(n=>n[0]).join('');
+    return `<tr>
+      <td>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="avatar" style="width:32px;height:32px;font-size:12px">${initials}</div>
+          <strong>${g.name}</strong>
+        </div>
+      </td>
+      <td style="font-family:monospace;font-size:12px">${g.id}</td>
+      <td>${g.phone}</td>
+      <td style="color:var(--text2)">${g.email}</td>
+      <td>${g.bookings} lần</td>
+      <td><strong>${g.spent}</strong></td>
+      <td><span class="badge ${r.cls}">${r.label}</span></td>
+      <td>
+        <button class="action-btn" onclick="toast('Xem hồ sơ: ${g.name}')">👁️</button>
+        <button class="action-btn" onclick="toast('Lịch sử: ${g.name}')">📋</button>
+        <button class="action-btn danger" onclick="toast('Đã xóa: ${g.name}')">🗑️</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+// ===== SERVICES =====
+const svcStatus = {done:{cls:'green',label:'Hoàn thành'},processing:{cls:'blue',label:'Đang xử lý'},pending:{cls:'orange',label:'Chờ xử lý'}};
+
+function renderServices() {
+  const tbody = document.getElementById('services-table-body');
+  if (!tbody) return;
+  tbody.innerHTML = services.map(s => {
+    const st = svcStatus[s.status] || svcStatus.pending;
+    return `<tr>
+      <td><strong>Phòng ${s.room}</strong></td>
+      <td>${s.type}</td>
+      <td>${s.detail}</td>
+      <td>${s.time}</td>
+      <td><strong>${s.amount}</strong></td>
+      <td><span class="badge ${st.cls}"><span class="badge-dot"></span>${st.label}</span></td>
+      <td>
+        <button class="action-btn" onclick="toast('Đã cập nhật trạng thái!')">✓</button>
+        <button class="action-btn danger" onclick="toast('Đã hủy dịch vụ!')">🗑️</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+// ===== STAFF =====
+function renderStaff() {
+  const grid = document.getElementById('staff-grid');
+  if (!grid) return;
+  const colors = {'#3A86FF':'#EBF2FF','#E94560':'#FEE9EE','#0A7D6C':'#E8F5F2','#C9A84C':'var(--gold-pale)','#9B59B6':'#F3EAF9','#E67E22':'#FEF3E5','#2C3E50':'#ECF0F1'};
+  grid.innerHTML = staffData.map(s => {
+    const bg = colors[s.color] || '#F0F0F0';
+    const initials = s.name.split(' ').slice(-2).map(n=>n[0]).join('');
+    const statusLabel = s.status==='online'?'🟢 Đang làm':s.status==='break'?'🟡 Nghỉ giải lao':'⚫ Ngoài ca';
+    return `<div class="staff-card">
+      <div class="staff-avatar" style="background:${s.color}">${initials}</div>
+      <div class="staff-name">${s.name}</div>
+      <div class="staff-role">${s.role}</div>
+      <div class="staff-shift" style="color:var(--text3);margin-bottom:8px">Ca: ${s.shift}</div>
+      <span class="badge ${s.status==='online'?'green':s.status==='break'?'orange':'gray'}" style="font-size:11px">${statusLabel}</span>
+    </div>`;
+  }).join('');
+}
+
+// ===== INVOICES =====
+function renderInvoices() {
+  const tbody = document.getElementById('invoices-table-body');
+  if (!tbody) return;
+  tbody.innerHTML = invoicesData.map(inv => `<tr>
+    <td><span style="font-family:monospace;font-size:12px;color:var(--text3)">${inv.no}</span></td>
+    <td><strong>${inv.guest}</strong></td>
+    <td>${inv.room}</td>
+    <td>${inv.date}</td>
+    <td>${inv.room_fee}</td>
+    <td>${inv.service}</td>
+    <td><strong>${inv.total}</strong></td>
+    <td><span class="badge gray">${inv.pay}</span></td>
+    <td><span class="badge ${inv.status==='paid'?'green':'orange'}"><span class="badge-dot"></span>${inv.status==='paid'?'Đã thanh toán':'Chờ TT'}</span></td>
+    <td>
+      <button class="action-btn" onclick="showModal('invoice-modal')">🖨️</button>
+      <button class="action-btn" onclick="toast('Đã gửi email hóa đơn!')">📧</button>
+    </td>
+  </tr>`).join('');
+}
+
+// ===== ROOM STATUS =====
+const statusTypes = ['available','occupied','occupied','occupied','occupied','occupied','occupied','cleaning','reserved','maintenance'];
+const roomNos = ['101','102','103','201','202','203','204','301','302','401','402','501'];
+const statusIcon = {available:'✅',occupied:'🔴',cleaning:'🧹',reserved:'📘',maintenance:'🔧'};
+const statusLabel = {available:'Trống',occupied:'Đang dùng',cleaning:'Dọn phòng',reserved:'Đã đặt',maintenance:'Bảo trì'};
+
+function renderRoomStatus() {
+  const grid = document.getElementById('room-status-grid');
+  if (!grid) return;
+  const allRooms = [];
+  for(let fl=1;fl<=5;fl++){
+    for(let rm=1;rm<=5;rm++){
+      const no = `${fl}0${rm}`;
+      const rand = Math.random();
+      const status = rand<0.13?'available':rand<0.78?'occupied':rand<0.88?'cleaning':rand<0.95?'reserved':'maintenance';
+      const types = ['STD','STD','DLX','DLX','STE'];
+      allRooms.push({no,status,type:types[rm-1]});
+    }
+  }
+  // Fix a few to known states
+  allRooms[0].status='available';
+  allRooms[5].status='cleaning';
+  allRooms[11].status='reserved';
+
+  grid.innerHTML = allRooms.map(r => `
+    <div class="room-tile ${r.status}" onclick="toast('Phòng ${r.no}: ${statusLabel[r.status]}')">
+      <span class="room-icon">${statusIcon[r.status]}</span>
+      <div class="room-no">${r.no}</div>
+      <div class="room-type">${r.type}</div>
+    </div>
+  `).join('');
+}
+
+// ===== SERVICE REVENUE =====
+function renderServiceRevenue() {
+  const el = document.getElementById('service-revenue');
+  if (!el) return;
+  const data = [
+    {name:'Tiền phòng',pct:68,color:'var(--gold)'},
+    {name:'Ăn uống',pct:14,color:'#0A7D6C'},
+    {name:'Spa',pct:10,color:'#9B59B6'},
+    {name:'Giặt ủi',pct:4,color:'#3A86FF'},
+    {name:'Thuê xe',pct:4,color:'#E94560'},
+  ];
+  el.innerHTML = data.map(d => `
+    <div style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px">
+        <span style="color:var(--text2)">${d.name}</span>
+        <span style="font-weight:600">${d.pct}%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:${d.pct}%;background:${d.color}"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ===== RECOMMENDATION =====
+function updateRecommend(val) {
+  const profile = document.getElementById('guest-profile');
+  const content = document.getElementById('profile-content');
+  const results = document.getElementById('recommend-results');
+  if (val === '') {
+    profile.style.display = 'none';
+    results.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3)"><div style="font-size:40px;margin-bottom:12px">✨</div><div>Chọn khách hàng để xem gợi ý phòng phù hợp</div></div>';
+    return;
+  }
+  const idx = parseInt(val);
+  const rec = recommendations[idx] || recommendations[0];
+  profile.style.display = 'block';
+  content.innerHTML = rec.guestProfile.prefs.map(p => `
+    <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)">
+      <span style="font-size:18px;flex-shrink:0">${p.icon}</span>
+      <div>
+        <div style="font-size:11px;color:var(--text3);font-weight:600;text-transform:uppercase">${p.label}</div>
+        <div style="font-size:13px;color:var(--text);margin-top:2px">${p.val}</div>
+      </div>
+    </div>
+  `).join('');
+  results.innerHTML = rec.rooms.map(r => `
+    <div class="recommend-card">
+      <div class="recommend-icon">${r.icon}</div>
+      <div class="recommend-info">
+        <div class="r-label">Gợi ý AI ✦</div>
+        <div class="r-name">${r.name}</div>
+        <div class="r-why">${r.why}</div>
+        <div style="font-size:12px;font-weight:600;color:var(--gold);margin-top:4px">${r.price}</div>
+      </div>
+      <div class="recommend-match">${r.match}</div>
+    </div>
+  `).join('');
+}
+
+// ===== NAVIGATION =====
+function showPage(pageId, clickedEl) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-'+pageId)?.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (clickedEl) clickedEl.classList.add('active');
+
+  const titles = {
+    dashboard:'Dashboard Tổng quan',rooms:'Quản lý Phòng',
+    booking:'Quản lý Đặt Phòng',guests:'Khách hàng',
+    services:'Dịch vụ',staff:'Nhân viên',invoices:'Hóa đơn',
+    reports:'Thống kê Doanh thu',recommend:'Gợi ý AI',roomstatus:'Tình trạng Phòng'
+  };
+  document.querySelector('.topbar-title').innerHTML = `LuxeStay <span>✦</span> ${titles[pageId]||'Hotel'}`;
+}
+
+// ===== MODALS =====
+function showModal(id) {
+  document.getElementById(id)?.classList.add('show');
+}
+
+function closeModal(id) {
+  document.getElementById(id)?.classList.remove('show');
+}
+
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) overlay.classList.remove('show');
+  });
+});
+
+// ===== TOAST =====
+let toastTimer;
+function toast(msg, icon='✓') {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.querySelector('.toast-icon').textContent = icon;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ===== ACTIONS =====
+function confirmBooking() {
+  closeModal('new-booking-modal');
+  toast('✅ Đặt phòng đã được xác nhận và gửi email cho khách!');
+}
+
+function saveRoom() {
+  closeModal('add-room-modal');
+  toast('🏨 Đã thêm phòng mới thành công!');
+}
+
+function saveGuest() {
+  closeModal('add-guest-modal');
+  toast('👤 Đã thêm khách hàng mới!');
+}
+
+function saveStaff() {
+  closeModal('add-staff-modal');
+  toast('👔 Đã thêm nhân viên mới!');
+}
+
+function saveService() {
+  closeModal('add-service-modal');
+  toast('🛎️ Đã tạo đơn dịch vụ!');
+}
+
+function addAmenity() {
+  const input = document.getElementById('new-amenity');
+  if (!input.value.trim()) return;
+  const tags = document.getElementById('amenity-tags');
+  const tag = document.createElement('div');
+  tag.className = 'amenity-tag';
+  tag.innerHTML = `${input.value} <button onclick="removeTag(this)">×</button>`;
+  tags.appendChild(tag);
+  input.value = '';
+}
+
+function removeTag(btn) {
+  btn.closest('.amenity-tag').remove();
+}
+
+function setReport(type, btn) {
+  document.querySelectorAll('#page-reports .filter-chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const data = type==='day'?[3.8,4.1,4.5,3.9,5.2,4.8,4.2,5.5,4.3,3.7,4.9,5.1]:
+               type==='month'?revenueData:
+               [980,1050,1140,1230,1320,1420,1380,1480,1390,1520,1610,1780];
+  const labels = type==='day'?['23','24','25','26','27','28','29','30','01','02','03','04']:
+                 type==='month'?months:
+                 ['2020','2021','2022','2023','2024','2025','2026P'];
+  renderChart('report-chart','report-chart-labels',data.slice(0,labels.length),labels);
+  toast(`Hiển thị báo cáo theo ${type==='day'?'ngày':type==='month'?'tháng':'năm'}`);
+}
+
+// ===== KEYBOARD =====
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.show').forEach(m => m.classList.remove('show'));
+  }
+});
+
+// Start
+init();
+</script>
+</body>
+</html>

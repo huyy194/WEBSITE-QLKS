@@ -1,0 +1,1136 @@
+[2026-05-11 17:15:01] BẮT ĐẦU gửi mail xác nhận đặt phòng cho: kietvo.260605@gmail.com (Đơn #123)
+[2026-05-11 17:15:05] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-11 17:15:05] BẮT ĐẦU gửi mail hóa đơn cho: kietvo.260605@gmail.com
+[2026-05-11 17:15:09] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-11 22:23:55] KHÔNG gửi mail từ datphong.php vì Email rỗng. MaKH: N/A
+[2026-05-11 22:24:49] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-11 22:24:49] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-11 22:24:53] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-11 22:27:08] INSERT thành công trong datphong.php. MaDP mới: 0
+[2026-05-11 22:27:08] KHÔNG gửi mail từ datphong.php vì Email rỗng. MaKH: N/A
+[2026-05-11 22:27:46] INSERT thành công trong datphong.php. MaDP mới: 0
+[2026-05-11 22:27:46] KHÔNG gửi mail từ datphong.php vì Email rỗng. MaKH: N/A
+[2026-05-11 22:29:46] INSERT thành công trong datphong.php. MaDP mới: 76
+[2026-05-11 22:29:46] Yêu cầu gửi mail từ datphong.php cho voanhkiet26625@gmail.com
+[2026-05-11 22:29:46] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-11 22:29:46] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-11 22:29:51] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-11 22:29:51] INSERT thành công trong datphong.php. MaDP mới: 77
+[2026-05-11 22:29:51] Yêu cầu gửi mail từ datphong.php cho voanhkiet26625@gmail.com
+[2026-05-11 22:29:51] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-11 22:29:51] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-11 22:29:56] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-11 22:46:02] INSERT thành công trong datphong.php. MaDP mới: 78
+[2026-05-11 22:46:02] Yêu cầu gửi mail từ datphong.php cho voanhkiet26625@gmail.com
+[2026-05-11 22:46:02] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-11 22:46:02] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-11 22:46:07] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-11 22:47:20] POST request detected in chitiet.php. User ID: 21
+[2026-05-11 22:47:20] Bắt đầu truy vấn tìm KhachHang với UserID: 21
+[2026-05-11 22:47:20] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 55)
+[2026-05-11 22:47:20] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-11 22:47:20] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-11 22:47:24] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-11 22:47:49] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-11 22:47:49] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-11 22:47:49] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-11 22:47:53] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-11 22:49:59] INSERT thành công trong datphong.php. MaDP mới: 80
+[2026-05-11 22:49:59] Yêu cầu gửi mail từ datphong.php cho doquanglinh02092005@gmail.com
+[2026-05-11 22:49:59] GỌI HÀM sendBookingConfirmation cho: doquanglinh02092005@gmail.com
+[2026-05-11 22:49:59] ĐANG GỬI mail xác nhận cho: doquanglinh02092005@gmail.com...
+[2026-05-11 22:50:02] THÀNH CÔNG: Đã gửi mail xác nhận cho doquanglinh02092005@gmail.com
+[2026-05-12 16:07:54] INSERT thành công trong datphong.php. MaDP mới: 81
+[2026-05-12 16:07:54] Yêu cầu gửi mail từ datphong.php cho voanhkiet26625@gmail.com
+[2026-05-12 16:07:54] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-12 16:07:54] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-12 16:07:59] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-12 16:19:55] GỌI HÀM sendResetPasswordEmail cho: voanhkiet26625@gmail.com
+[2026-05-12 16:19:55] ĐANG GỬI mail reset password cho: voanhkiet26625@gmail.com...
+[2026-05-12 16:20:00] THÀNH CÔNG: Đã gửi mail reset password cho voanhkiet26625@gmail.com
+[2026-05-12 16:20:00] GỌI HÀM sendResetPasswordEmail cho: voanhkiet26625@gmail.com
+[2026-05-12 16:20:00] ĐANG GỬI mail reset password cho: voanhkiet26625@gmail.com...
+[2026-05-12 16:20:05] THÀNH CÔNG: Đã gửi mail reset password cho voanhkiet26625@gmail.com
+[2026-05-12 16:29:27] GỌI HÀM sendResetPasswordEmail cho: voanhkiet26625@gmail.com
+[2026-05-12 16:29:27] ĐANG GỬI mail reset password cho: voanhkiet26625@gmail.com...
+[2026-05-12 16:29:31] THÀNH CÔNG: Đã gửi mail reset password cho voanhkiet26625@gmail.com
+[2026-05-12 16:48:41] GỌI HÀM sendOtpEmail cho: voanhkiet26625@gmail.com
+[2026-05-12 16:48:41] ĐANG GỬI mail OTP cho: voanhkiet26625@gmail.com...
+[2026-05-12 16:48:46] THÀNH CÔNG: Đã gửi mail OTP cho voanhkiet26625@gmail.com
+[2026-05-12 16:50:54] POST request detected in chitiet.php. User ID: 48
+[2026-05-12 16:50:54] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-12 16:50:54] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-12 16:50:54] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-12 16:50:54] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-12 16:50:58] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-12 16:51:11] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-12 16:51:11] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-12 16:51:11] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-12 16:51:16] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-12 17:09:10] GỌI HÀM sendOtpEmail cho: doquanglinh02092005@gmail.com
+[2026-05-12 17:09:10] ĐANG GỬI mail OTP cho: doquanglinh02092005@gmail.com...
+[2026-05-12 17:09:15] THÀNH CÔNG: Đã gửi mail OTP cho doquanglinh02092005@gmail.com
+[2026-05-12 17:28:43] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-12 17:28:43] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-12 17:28:48] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-12 17:28:48] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-12 17:28:48] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-12 17:28:52] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-12 17:55:41] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-12 17:55:41] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-12 17:55:45] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-13 22:23:19] INSERT thành công trong datphong.php. MaDP mới: 83
+[2026-05-13 22:23:19] Yêu cầu gửi mail từ datphong.php cho voanhkiet26625@gmail.com
+[2026-05-13 22:23:19] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-13 22:23:19] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-13 22:23:24] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-13 22:23:37] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-13 22:23:37] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-13 22:23:41] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-13 22:25:26] GỌI HÀM sendResetPasswordEmail cho: voanhkiet26625@gmail.com
+[2026-05-13 22:25:26] ĐANG GỬI mail reset password cho: voanhkiet26625@gmail.com...
+[2026-05-13 22:25:31] THÀNH CÔNG: Đã gửi mail reset password cho voanhkiet26625@gmail.com
+[2026-05-13 22:25:31] GỌI HÀM sendResetPasswordEmail cho: voanhkiet26625@gmail.com
+[2026-05-13 22:25:31] ĐANG GỬI mail reset password cho: voanhkiet26625@gmail.com...
+[2026-05-13 22:25:35] THÀNH CÔNG: Đã gửi mail reset password cho voanhkiet26625@gmail.com
+[2026-05-13 22:26:29] POST request detected in chitiet.php. User ID: 48
+[2026-05-13 22:26:29] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-13 22:26:29] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-13 22:26:29] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-13 22:26:29] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-13 22:26:33] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-13 22:27:00] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-13 22:27:00] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-13 22:27:00] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-13 22:27:04] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-13 22:30:11] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-13 22:30:11] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-13 22:30:15] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-13 22:30:15] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-13 22:30:15] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-13 22:30:22] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-13 22:34:39] POST request detected in chitiet.php. User ID: 49
+[2026-05-13 22:34:39] Bắt đầu truy vấn tìm KhachHang với UserID: 49
+[2026-05-13 22:34:39] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 85)
+[2026-05-13 22:34:39] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-13 22:34:39] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-13 22:34:43] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-13 22:34:43] POST request detected in chitiet.php. User ID: 49
+[2026-05-13 22:34:43] Bắt đầu truy vấn tìm KhachHang với UserID: 49
+[2026-05-13 22:35:13] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-13 22:35:13] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-13 22:35:13] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-13 22:35:18] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-13 22:36:28] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-13 22:36:28] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-13 22:36:32] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-14 09:53:18] POST request detected in chitiet.php. User ID: 48
+[2026-05-14 09:53:18] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-14 09:53:18] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-14 09:53:18] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-14 09:53:18] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-14 09:53:23] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-14 09:53:37] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-14 09:53:37] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-14 09:53:37] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-14 09:53:43] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-14 09:55:08] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-14 09:55:08] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-14 09:55:12] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-14 09:58:58] POST request detected in chitiet.php. User ID: 48
+[2026-05-14 09:58:58] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-14 09:58:58] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-14 09:58:58] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-14 09:58:59] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-14 09:59:06] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-14 09:59:19] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-14 09:59:19] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-14 09:59:19] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-14 09:59:25] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-14 10:00:09] POST request detected in chitiet.php. User ID: 49
+[2026-05-14 10:00:09] Bắt đầu truy vấn tìm KhachHang với UserID: 49
+[2026-05-14 10:00:09] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 85)
+[2026-05-14 10:00:09] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-14 10:00:09] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-14 10:00:14] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-14 10:00:26] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-14 10:00:26] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-14 10:00:26] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-14 10:00:31] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-15 12:42:03] POST request detected in chitiet.php. User ID: 48
+[2026-05-15 12:42:03] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-15 12:42:03] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-15 12:42:03] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 12:42:03] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 12:42:08] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-15 12:42:25] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-15 12:42:25] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 12:42:25] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 12:42:29] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-15 12:45:33] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-15 12:45:33] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-15 12:45:38] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-15 12:46:25] POST request detected in chitiet.php. User ID: 50
+[2026-05-15 12:46:25] Bắt đầu truy vấn tìm KhachHang với UserID: 50
+[2026-05-15 12:46:25] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 86)
+[2026-05-15 12:46:25] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-15 12:46:25] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-15 12:46:29] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-15 12:46:44] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-15 12:46:44] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-15 12:46:44] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-15 12:46:48] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-15 12:47:02] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-15 12:47:02] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-15 12:47:07] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-15 12:48:00] POST request detected in chitiet.php. User ID: 50
+[2026-05-15 12:48:00] Bắt đầu truy vấn tìm KhachHang với UserID: 50
+[2026-05-15 12:48:00] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 86)
+[2026-05-15 12:48:00] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-15 12:48:00] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-15 12:48:04] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-15 12:48:04] POST request detected in chitiet.php. User ID: 50
+[2026-05-15 12:48:04] Bắt đầu truy vấn tìm KhachHang với UserID: 50
+[2026-05-15 12:48:24] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-15 12:48:24] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-15 12:48:24] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-15 12:48:27] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-15 12:48:54] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-15 12:48:54] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-15 12:48:58] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-15 12:52:54] POST request detected in chitiet.php. User ID: 50
+[2026-05-15 12:52:54] Bắt đầu truy vấn tìm KhachHang với UserID: 50
+[2026-05-15 12:52:54] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 86)
+[2026-05-15 12:52:54] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-15 12:52:54] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-15 12:52:58] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-15 12:52:58] POST request detected in chitiet.php. User ID: 50
+[2026-05-15 12:52:58] Bắt đầu truy vấn tìm KhachHang với UserID: 50
+[2026-05-15 12:53:17] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-15 12:53:17] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-15 12:53:17] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-15 12:53:21] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-15 12:53:38] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-15 12:53:38] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-15 12:53:42] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-15 22:54:28] POST request detected in chitiet.php. User ID: 48
+[2026-05-15 22:54:28] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-15 22:54:28] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-15 22:54:28] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 22:54:28] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 22:54:33] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-15 22:54:56] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-15 22:54:56] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 22:54:56] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 22:55:01] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-15 22:57:40] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-15 22:57:40] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-15 22:57:45] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-15 22:58:21] POST request detected in chitiet.php. User ID: 48
+[2026-05-15 22:58:21] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-15 22:58:21] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-15 22:58:21] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 22:58:21] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 22:58:25] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-15 22:58:43] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-15 22:58:43] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 22:58:43] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 22:58:48] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-15 23:06:11] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-15 23:06:11] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-15 23:06:16] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-15 23:07:39] POST request detected in chitiet.php. User ID: 48
+[2026-05-15 23:07:39] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-15 23:07:39] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-15 23:07:39] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 23:07:39] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 23:07:44] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-15 23:08:57] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-15 23:08:57] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 23:08:57] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 23:09:02] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-15 23:09:55] POST request detected in chitiet.php. User ID: 48
+[2026-05-15 23:09:55] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-15 23:09:55] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-15 23:09:55] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 23:09:55] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 23:09:58] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-15 23:09:58] POST request detected in chitiet.php. User ID: 48
+[2026-05-15 23:09:58] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-15 23:10:23] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-15 23:10:23] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 23:10:23] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 23:10:27] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-15 23:11:17] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-15 23:11:17] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-15 23:11:22] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-15 23:11:29] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-15 23:11:29] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-15 23:11:34] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-15 23:17:03] POST request detected in chitiet.php. User ID: 50
+[2026-05-15 23:17:03] Bắt đầu truy vấn tìm KhachHang với UserID: 50
+[2026-05-15 23:17:03] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 86)
+[2026-05-15 23:17:03] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-15 23:17:03] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-15 23:17:08] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-15 23:17:34] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-15 23:17:34] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-15 23:17:34] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-15 23:17:39] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-15 23:18:14] POST request detected in chitiet.php. User ID: 48
+[2026-05-15 23:18:14] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-15 23:18:14] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-15 23:18:14] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 23:18:14] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 23:18:18] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-15 23:19:58] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-15 23:19:58] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 23:19:58] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 23:20:03] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-15 23:20:52] POST request detected in chitiet.php. User ID: 48
+[2026-05-15 23:20:52] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-15 23:20:52] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-15 23:20:52] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 23:20:52] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 23:20:57] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-15 23:21:56] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-15 23:21:56] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-15 23:21:56] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-15 23:22:00] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-16 21:04:45] POST request detected in chitiet.php. User ID: 48
+[2026-05-16 21:04:45] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-16 21:04:45] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-16 21:04:45] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-16 21:04:45] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-16 21:04:50] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-16 21:05:36] POST request detected in chitiet.php. User ID: 48
+[2026-05-16 21:05:36] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-16 21:05:36] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-16 21:05:36] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-16 21:05:36] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-16 21:05:41] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-16 21:06:00] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-16 21:06:00] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-16 21:06:00] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-16 21:06:04] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-16 21:06:07] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-16 21:06:07] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-16 21:06:07] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-16 21:06:11] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-16 21:08:28] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-16 21:08:28] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-16 21:08:32] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-16 21:08:37] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-16 21:08:37] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-16 21:08:41] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-16 21:11:59] POST request detected in chitiet.php. User ID: 48
+[2026-05-16 21:11:59] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-16 21:11:59] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-16 21:12:12] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-16 21:12:12] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-16 21:12:12] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-16 21:12:17] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-16 21:14:12] POST request detected in chitiet.php. User ID: 48
+[2026-05-16 21:14:12] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-16 21:14:12] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-16 21:14:57] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-16 21:14:57] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-16 21:14:57] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-16 21:15:02] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-16 22:11:51] POST request detected in chitiet.php. User ID: 50
+[2026-05-16 22:11:51] Bắt đầu truy vấn tìm KhachHang với UserID: 50
+[2026-05-16 22:12:06] POST request detected in chitiet.php. User ID: 50
+[2026-05-16 22:12:06] Bắt đầu truy vấn tìm KhachHang với UserID: 50
+[2026-05-16 22:53:56] POST request detected in chitiet.php. User ID: 48
+[2026-05-16 22:53:56] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-16 22:53:56] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-16 22:54:09] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-16 22:54:09] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-16 22:54:09] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-16 22:54:14] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-17 10:51:24] INSERT thành công trong datphong.php. MaDP mới: 105
+[2026-05-17 10:51:24] Yêu cầu gửi mail từ datphong.php cho kietvo.260605@gmail.com
+[2026-05-17 10:58:51] POST request detected in chitiet.php. User ID: 48
+[2026-05-17 10:58:51] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-17 10:58:51] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-17 10:59:33] POST request detected in chitiet.php. User ID: 48
+[2026-05-17 10:59:33] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-17 10:59:33] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-17 10:59:46] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-17 10:59:46] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-17 10:59:46] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-17 10:59:50] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-17 11:00:22] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-17 11:00:22] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-17 11:00:27] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-17 11:20:15] POST request detected in chitiet.php. User ID: 48
+[2026-05-17 11:20:15] Bắt đầu truy vấn tìm KhachHang với UserID: 48
+[2026-05-17 11:20:15] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 84)
+[2026-05-17 11:20:24] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-17 11:20:24] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-17 11:20:24] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-17 11:20:29] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-17 11:23:37] GỌI HÀM sendOtpEmail cho: voanhkiet26625@gmail.com
+[2026-05-17 11:23:37] ĐANG GỬI mail OTP cho: voanhkiet26625@gmail.com...
+[2026-05-17 11:23:42] THÀNH CÔNG: Đã gửi mail OTP cho voanhkiet26625@gmail.com
+[2026-05-17 11:25:23] POST request detected in chitiet.php. User ID: 51
+[2026-05-17 11:25:23] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-17 11:25:23] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-17 11:25:31] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-17 11:25:31] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-17 11:25:31] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-17 11:25:35] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-17 11:26:59] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-17 11:26:59] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-17 11:26:59] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-17 11:27:03] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-17 11:27:26] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-17 11:27:26] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-17 11:27:30] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-17 11:28:07] POST request detected in chitiet.php. User ID: 51
+[2026-05-17 11:28:07] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-17 11:28:07] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 20:37:54] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 20:37:54] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 20:37:54] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 20:37:54] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 20:37:54] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 20:38:26] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 20:38:26] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 20:38:26] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 20:38:44] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 20:38:44] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 20:38:44] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:38:49] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 20:38:51] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 20:38:51] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 20:38:51] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:38:56] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 20:39:22] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 20:39:22] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 20:39:22] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 20:39:52] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 20:39:52] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 20:39:52] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 20:40:03] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 20:40:03] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 20:40:03] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:40:08] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 20:40:10] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 20:40:10] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 20:40:10] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:40:14] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 20:40:27] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-20 20:40:27] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:40:31] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-20 20:40:38] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-20 20:40:38] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:40:42] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-20 20:42:03] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 20:42:03] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 20:42:03] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 20:42:32] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 20:42:32] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 20:42:32] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 20:42:44] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 20:42:44] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 20:42:44] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:42:48] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 20:42:54] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 20:42:54] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 20:42:54] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:42:58] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 20:43:17] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-20 20:43:17] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:43:21] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-20 20:45:52] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-20 20:45:52] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:45:56] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-20 20:46:48] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 20:46:48] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 20:46:48] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 20:47:00] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 20:47:00] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 20:47:00] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:47:04] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 20:51:16] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 20:51:16] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 20:51:16] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 20:51:31] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 20:51:31] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 20:51:31] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:51:35] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 20:55:36] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 20:55:36] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 20:55:36] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 20:55:48] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 20:55:48] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 20:55:48] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:55:53] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 20:55:59] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-20 20:55:59] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:56:03] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-20 20:56:05] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-20 20:56:05] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:56:10] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-20 20:59:02] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-20 20:59:02] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-20 20:59:06] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-20 21:01:54] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 21:01:54] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 21:01:54] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 21:02:11] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 21:02:11] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 21:02:11] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 21:02:27] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 21:02:27] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 21:02:27] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 21:02:32] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 21:02:38] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 21:02:38] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 21:02:38] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 21:02:42] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 21:02:55] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-20 21:02:55] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-20 21:02:59] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-20 21:03:06] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-20 21:03:06] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-20 21:03:10] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-20 21:03:49] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 21:03:49] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 21:03:49] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 21:04:18] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 21:04:18] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 21:04:18] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 21:04:31] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 21:04:31] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 21:04:31] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 21:04:35] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 21:04:38] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 21:04:38] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 21:04:38] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 21:04:43] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 21:06:24] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-20 21:06:24] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-20 21:06:29] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-20 21:06:34] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-20 21:06:34] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-20 21:06:38] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-20 21:10:34] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 21:10:34] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 21:10:34] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 21:10:49] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 21:10:49] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 21:10:49] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 21:10:53] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 21:12:05] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-20 21:12:05] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-20 21:12:10] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-20 21:15:22] POST request detected in chitiet.php. User ID: 51
+[2026-05-20 21:15:22] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-20 21:15:22] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-20 21:15:36] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-20 21:15:36] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-20 21:15:36] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-20 21:15:40] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-20 21:15:50] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-20 21:15:50] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-20 21:15:55] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-21 07:43:15] POST request detected in chitiet.php. User ID: 51
+[2026-05-21 07:43:15] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-21 07:43:15] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-21 07:43:36] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-21 07:43:36] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-21 07:43:36] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-21 07:43:44] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-21 07:44:00] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-21 07:44:00] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-21 07:44:04] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-21 07:44:41] POST request detected in chitiet.php. User ID: 51
+[2026-05-21 07:44:41] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-21 07:44:57] POST request detected in chitiet.php. User ID: 51
+[2026-05-21 07:44:57] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-21 07:44:57] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-21 07:45:16] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-21 07:45:16] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-21 07:45:16] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-21 07:45:22] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-21 07:45:52] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-21 07:45:52] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-21 07:45:57] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-21 09:52:44] POST request detected in chitiet.php. User ID: 51
+[2026-05-21 09:52:44] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-21 09:52:44] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-21 09:53:04] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-21 09:53:04] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-21 09:53:04] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-21 09:53:09] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-21 09:54:05] POST request detected in chitiet.php. User ID: 51
+[2026-05-21 09:54:05] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-21 09:54:05] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-21 09:54:26] Yêu cầu gửi mail Hủy đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-21 09:54:26] GỌI HÀM sendCancellationEmail cho: voanhkiet26625@gmail.com (Đơn #129)
+[2026-05-21 09:54:26] BẮT ĐẦU gửi mail hủy đơn cho: voanhkiet26625@gmail.com (Đơn #129)
+[2026-05-21 09:54:30] THÀNH CÔNG: Đã gửi mail hủy đơn cho voanhkiet26625@gmail.com
+[2026-05-21 09:56:15] POST request detected in chitiet.php. User ID: 51
+[2026-05-21 09:56:15] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-21 09:56:15] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-21 09:58:25] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-21 09:58:25] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-21 09:58:25] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-21 09:58:29] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-21 10:09:47] GỌI HÀM sendResetPasswordEmail cho: kietvo.260605@gmail.com
+[2026-05-21 10:09:47] ĐANG GỬI mail reset password cho: kietvo.260605@gmail.com...
+[2026-05-21 10:09:53] THÀNH CÔNG: Đã gửi mail reset password cho kietvo.260605@gmail.com
+[2026-05-21 11:04:53] POST request detected in chitiet.php. User ID: 51
+[2026-05-21 11:04:53] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-21 11:04:53] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-21 11:05:13] POST request detected in chitiet.php. User ID: 51
+[2026-05-21 11:05:13] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-21 11:05:13] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-21 11:05:29] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-21 11:05:29] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-21 11:05:29] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-21 11:05:34] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-21 11:05:38] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-21 11:05:38] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-21 11:05:38] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-21 11:05:42] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-21 11:06:36] POST request detected in chitiet.php. User ID: 51
+[2026-05-21 11:06:36] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-21 11:06:36] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-21 11:06:48] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-21 11:06:48] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-21 11:06:48] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-21 11:06:52] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-21 11:13:35] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-21 11:13:35] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-21 11:13:40] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-23 10:50:07] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-23 10:50:07] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-23 10:50:13] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-23 10:56:07] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-23 10:56:07] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-23 10:56:12] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-23 10:56:53] POST request detected in chitiet.php. User ID: 53
+[2026-05-23 10:56:53] Bắt đầu truy vấn tìm KhachHang với UserID: 53
+[2026-05-23 10:56:53] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 90)
+[2026-05-23 10:57:05] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-23 10:57:05] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-23 10:57:05] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-23 10:57:09] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-23 10:58:41] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-23 10:58:41] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-23 10:58:46] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-23 10:59:26] POST request detected in chitiet.php. User ID: 53
+[2026-05-23 10:59:26] Bắt đầu truy vấn tìm KhachHang với UserID: 53
+[2026-05-23 10:59:26] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 90)
+[2026-05-23 10:59:37] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-23 10:59:37] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-23 10:59:37] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-23 10:59:42] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-23 11:00:19] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-23 11:00:19] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-23 11:00:25] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-23 11:01:26] POST request detected in chitiet.php. User ID: 53
+[2026-05-23 11:01:26] Bắt đầu truy vấn tìm KhachHang với UserID: 53
+[2026-05-23 11:01:26] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 90)
+[2026-05-23 11:01:36] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-23 11:01:36] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-23 11:01:36] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-23 11:01:41] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-23 11:02:19] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-23 11:02:19] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-23 11:02:23] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-23 12:28:04] GỌI HÀM sendResetPasswordEmail cho: voanhkiet26625@gmail.com
+[2026-05-23 12:28:04] ĐANG GỬI mail reset password cho: voanhkiet26625@gmail.com...
+[2026-05-23 12:28:09] THÀNH CÔNG: Đã gửi mail reset password cho voanhkiet26625@gmail.com
+[2026-05-23 12:29:37] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-23 12:29:37] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-23 12:29:42] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-23 12:30:28] POST request detected in chitiet.php. User ID: 54
+[2026-05-23 12:30:28] Bắt đầu truy vấn tìm KhachHang với UserID: 54
+[2026-05-23 12:30:28] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 91)
+[2026-05-23 12:31:24] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-23 12:31:24] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-23 12:31:28] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-23 13:47:47] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-23 13:47:47] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-23 13:47:57] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-23 13:48:20] GỌI HÀM sendResetPasswordEmail cho: kietvo.260605@gmail.com
+[2026-05-23 13:48:20] ĐANG GỬI mail reset password cho: kietvo.260605@gmail.com...
+[2026-05-23 13:48:25] THÀNH CÔNG: Đã gửi mail reset password cho kietvo.260605@gmail.com
+[2026-05-23 13:51:12] POST request detected in chitiet.php. User ID: 51
+[2026-05-23 13:51:12] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-23 13:51:12] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-23 13:51:38] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-23 13:51:38] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-23 13:51:38] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-23 13:51:43] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-23 13:52:58] POST request detected in chitiet.php. User ID: 51
+[2026-05-23 13:52:58] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-23 13:58:46] POST request detected in chitiet.php. User ID: 51
+[2026-05-23 13:58:46] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-23 14:04:20] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-23 14:04:20] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-23 14:04:29] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-23 14:04:29] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-23 14:04:29] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-23 14:04:36] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-23 21:54:09] POST request detected in chitiet.php. User ID: 51
+[2026-05-23 21:54:09] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-23 21:54:20] POST request detected in chitiet.php. User ID: 51
+[2026-05-23 21:54:20] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-23 21:56:35] POST request detected in chitiet.php. User ID: 51
+[2026-05-23 21:56:35] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-23 21:56:35] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-23 21:56:56] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-23 21:56:56] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-23 21:56:56] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-23 21:57:01] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-23 21:57:40] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-23 21:57:40] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-23 21:57:44] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-23 21:57:53] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-23 21:57:53] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-23 21:57:57] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-23 21:58:04] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-23 21:58:04] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-23 21:58:08] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-23 22:00:10] POST request detected in chitiet.php. User ID: 51
+[2026-05-23 22:00:10] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-23 22:00:10] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-23 22:00:31] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho voanhkiet26625@gmail.com
+[2026-05-23 22:00:31] GỌI HÀM sendBookingConfirmation cho: voanhkiet26625@gmail.com
+[2026-05-23 22:00:31] ĐANG GỬI mail xác nhận cho: voanhkiet26625@gmail.com...
+[2026-05-23 22:00:35] THÀNH CÔNG: Đã gửi mail xác nhận cho voanhkiet26625@gmail.com
+[2026-05-23 22:01:38] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-23 22:01:38] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-23 22:01:42] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-23 22:01:42] GỌI HÀM sendInvoiceEmail cho: voanhkiet26625@gmail.com
+[2026-05-23 22:01:42] ĐANG GỬI mail hóa đơn cho: voanhkiet26625@gmail.com...
+[2026-05-23 22:01:46] THÀNH CÔNG: Đã gửi mail hóa đơn cho voanhkiet26625@gmail.com
+[2026-05-27 21:17:13] GỌI HÀM sendOtpEmail cho: nammai88208@gmail.com
+[2026-05-27 21:17:13] ĐANG GỬI mail OTP cho: nammai88208@gmail.com...
+[2026-05-27 21:17:18] THÀNH CÔNG: Đã gửi mail OTP cho nammai88208@gmail.com
+[2026-05-27 21:17:18] GỌI HÀM sendOtpEmail cho: nammai88208@gmail.com
+[2026-05-27 21:17:18] ĐANG GỬI mail OTP cho: nammai88208@gmail.com...
+[2026-05-27 21:17:22] THÀNH CÔNG: Đã gửi mail OTP cho nammai88208@gmail.com
+[2026-05-27 21:18:18] GỌI HÀM sendOtpEmail cho: nammai88208@gmail.com
+[2026-05-27 21:18:18] ĐANG GỬI mail OTP cho: nammai88208@gmail.com...
+[2026-05-27 21:18:22] THÀNH CÔNG: Đã gửi mail OTP cho nammai88208@gmail.com
+[2026-05-27 21:20:27] POST request detected in chitiet.php. User ID: 57
+[2026-05-27 21:20:27] Bắt đầu truy vấn tìm KhachHang với UserID: 57
+[2026-05-27 21:20:27] Bắt đầu quy trình gửi mail từ chitiet.php cho nammai88208@gmail.com (MaKH: 94)
+[2026-05-27 21:20:44] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho nammai88208@gmail.com
+[2026-05-27 21:20:44] GỌI HÀM sendBookingConfirmation cho: nammai88208@gmail.com
+[2026-05-27 21:20:44] ĐANG GỬI mail xác nhận cho: nammai88208@gmail.com...
+[2026-05-27 21:20:47] THÀNH CÔNG: Đã gửi mail xác nhận cho nammai88208@gmail.com
+[2026-05-27 21:21:26] GỌI HÀM sendInvoiceEmail cho: nammai88208@gmail.com
+[2026-05-27 21:21:26] ĐANG GỬI mail hóa đơn cho: nammai88208@gmail.com...
+[2026-05-27 21:21:30] THÀNH CÔNG: Đã gửi mail hóa đơn cho nammai88208@gmail.com
+[2026-05-27 21:22:39] POST request detected in chitiet.php. User ID: 57
+[2026-05-27 21:22:39] Bắt đầu truy vấn tìm KhachHang với UserID: 57
+[2026-05-27 21:22:39] Bắt đầu quy trình gửi mail từ chitiet.php cho nammai88208@gmail.com (MaKH: 94)
+[2026-05-27 21:22:45] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho nammai88208@gmail.com
+[2026-05-27 21:22:45] GỌI HÀM sendBookingConfirmation cho: nammai88208@gmail.com
+[2026-05-27 21:22:45] ĐANG GỬI mail xác nhận cho: nammai88208@gmail.com...
+[2026-05-27 21:22:49] THÀNH CÔNG: Đã gửi mail xác nhận cho nammai88208@gmail.com
+[2026-05-27 21:23:13] GỌI HÀM sendInvoiceEmail cho: nammai88208@gmail.com
+[2026-05-27 21:23:13] ĐANG GỬI mail hóa đơn cho: nammai88208@gmail.com...
+[2026-05-27 21:23:16] THÀNH CÔNG: Đã gửi mail hóa đơn cho nammai88208@gmail.com
+[2026-05-27 22:03:01] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-27 22:03:01] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-27 22:03:06] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-27 22:10:30] POST request detected in chitiet.php. User ID: 58
+[2026-05-27 22:10:30] Bắt đầu truy vấn tìm KhachHang với UserID: 58
+[2026-05-27 22:10:30] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 95)
+[2026-05-27 22:10:45] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-27 22:10:45] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-27 22:10:45] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-27 22:10:49] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-27 22:13:08] POST request detected in chitiet.php. User ID: 58
+[2026-05-27 22:13:08] Bắt đầu truy vấn tìm KhachHang với UserID: 58
+[2026-05-27 22:13:08] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 95)
+[2026-05-27 22:13:17] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-27 22:13:17] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-27 22:13:17] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-27 22:13:22] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-27 22:13:49] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-27 22:13:49] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-27 22:13:54] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-27 22:14:36] POST request detected in chitiet.php. User ID: 58
+[2026-05-27 22:14:36] Bắt đầu truy vấn tìm KhachHang với UserID: 58
+[2026-05-27 22:14:36] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 95)
+[2026-05-27 22:14:48] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-27 22:14:48] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-27 22:14:48] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-27 22:14:52] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-27 22:15:05] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-27 22:15:05] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-27 22:15:10] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-28 07:47:17] GỌI HÀM sendOtpEmail cho: nammai88208@gmail.com
+[2026-05-28 07:47:17] ĐANG GỬI mail OTP cho: nammai88208@gmail.com...
+[2026-05-28 07:47:22] THÀNH CÔNG: Đã gửi mail OTP cho nammai88208@gmail.com
+[2026-05-28 07:47:22] GỌI HÀM sendOtpEmail cho: nammai88208@gmail.com
+[2026-05-28 07:47:22] ĐANG GỬI mail OTP cho: nammai88208@gmail.com...
+[2026-05-28 07:47:27] THÀNH CÔNG: Đã gửi mail OTP cho nammai88208@gmail.com
+[2026-05-28 07:48:42] POST request detected in chitiet.php. User ID: 59
+[2026-05-28 07:48:42] Bắt đầu truy vấn tìm KhachHang với UserID: 59
+[2026-05-28 07:48:42] Bắt đầu quy trình gửi mail từ chitiet.php cho nammai88208@gmail.com (MaKH: 96)
+[2026-05-28 07:48:51] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho nammai88208@gmail.com
+[2026-05-28 07:48:51] GỌI HÀM sendBookingConfirmation cho: nammai88208@gmail.com
+[2026-05-28 07:48:51] ĐANG GỬI mail xác nhận cho: nammai88208@gmail.com...
+[2026-05-28 07:48:55] THÀNH CÔNG: Đã gửi mail xác nhận cho nammai88208@gmail.com
+[2026-05-28 07:51:13] POST request detected in chitiet.php. User ID: 59
+[2026-05-28 07:51:13] Bắt đầu truy vấn tìm KhachHang với UserID: 59
+[2026-05-28 07:51:13] Bắt đầu quy trình gửi mail từ chitiet.php cho nammai88208@gmail.com (MaKH: 96)
+[2026-05-28 07:51:21] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho nammai88208@gmail.com
+[2026-05-28 07:51:21] GỌI HÀM sendBookingConfirmation cho: nammai88208@gmail.com
+[2026-05-28 07:51:21] ĐANG GỬI mail xác nhận cho: nammai88208@gmail.com...
+[2026-05-28 07:51:25] THÀNH CÔNG: Đã gửi mail xác nhận cho nammai88208@gmail.com
+[2026-05-28 07:51:49] GỌI HÀM sendInvoiceEmail cho: nammai88208@gmail.com
+[2026-05-28 07:51:49] ĐANG GỬI mail hóa đơn cho: nammai88208@gmail.com...
+[2026-05-28 07:51:54] THÀNH CÔNG: Đã gửi mail hóa đơn cho nammai88208@gmail.com
+[2026-05-28 07:52:19] POST request detected in chitiet.php. User ID: 59
+[2026-05-28 07:52:19] Bắt đầu truy vấn tìm KhachHang với UserID: 59
+[2026-05-28 07:52:19] Bắt đầu quy trình gửi mail từ chitiet.php cho nammai88208@gmail.com (MaKH: 96)
+[2026-05-28 07:52:26] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho nammai88208@gmail.com
+[2026-05-28 07:52:26] GỌI HÀM sendBookingConfirmation cho: nammai88208@gmail.com
+[2026-05-28 07:52:26] ĐANG GỬI mail xác nhận cho: nammai88208@gmail.com...
+[2026-05-28 07:52:31] THÀNH CÔNG: Đã gửi mail xác nhận cho nammai88208@gmail.com
+[2026-05-28 07:53:34] POST request detected in chitiet.php. User ID: 59
+[2026-05-28 07:53:34] Bắt đầu truy vấn tìm KhachHang với UserID: 59
+[2026-05-28 07:53:34] Bắt đầu quy trình gửi mail từ chitiet.php cho nammai88208@gmail.com (MaKH: 96)
+[2026-05-28 07:53:44] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho nammai88208@gmail.com
+[2026-05-28 07:53:44] GỌI HÀM sendBookingConfirmation cho: nammai88208@gmail.com
+[2026-05-28 07:53:44] ĐANG GỬI mail xác nhận cho: nammai88208@gmail.com...
+[2026-05-28 07:53:48] THÀNH CÔNG: Đã gửi mail xác nhận cho nammai88208@gmail.com
+[2026-05-28 07:54:01] GỌI HÀM sendInvoiceEmail cho: nammai88208@gmail.com
+[2026-05-28 07:54:01] ĐANG GỬI mail hóa đơn cho: nammai88208@gmail.com...
+[2026-05-28 07:54:05] THÀNH CÔNG: Đã gửi mail hóa đơn cho nammai88208@gmail.com
+[2026-05-28 08:12:18] POST request detected in chitiet.php. User ID: 59
+[2026-05-28 08:12:18] Bắt đầu truy vấn tìm KhachHang với UserID: 59
+[2026-05-28 08:12:18] Bắt đầu quy trình gửi mail từ chitiet.php cho nammai88208@gmail.com (MaKH: 96)
+[2026-05-28 08:12:25] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho nammai88208@gmail.com
+[2026-05-28 08:12:25] GỌI HÀM sendBookingConfirmation cho: nammai88208@gmail.com
+[2026-05-28 08:12:25] ĐANG GỬI mail xác nhận cho: nammai88208@gmail.com...
+[2026-05-28 08:12:33] THÀNH CÔNG: Đã gửi mail xác nhận cho nammai88208@gmail.com
+[2026-05-28 08:13:22] GỌI HÀM sendInvoiceEmail cho: nammai88208@gmail.com
+[2026-05-28 08:13:22] ĐANG GỬI mail hóa đơn cho: nammai88208@gmail.com...
+[2026-05-28 08:13:27] THÀNH CÔNG: Đã gửi mail hóa đơn cho nammai88208@gmail.com
+[2026-05-28 08:13:48] POST request detected in chitiet.php. User ID: 59
+[2026-05-28 08:13:48] Bắt đầu truy vấn tìm KhachHang với UserID: 59
+[2026-05-28 10:09:30] GỌI HÀM sendResetPasswordEmail cho: nammai88208@gmail.com
+[2026-05-28 10:09:30] ĐANG GỬI mail reset password cho: nammai88208@gmail.com...
+[2026-05-28 10:09:38] THÀNH CÔNG: Đã gửi mail reset password cho nammai88208@gmail.com
+[2026-05-29 21:12:28] GỌI HÀM sendOtpEmail cho: nammai88208@gmail.com
+[2026-05-29 21:12:28] ĐANG GỬI mail OTP cho: nammai88208@gmail.com...
+[2026-05-29 21:12:33] THÀNH CÔNG: Đã gửi mail OTP cho nammai88208@gmail.com
+[2026-05-29 21:13:32] GỌI HÀM sendResetPasswordEmail cho: nammai88208@gmail.com
+[2026-05-29 21:13:32] ĐANG GỬI mail reset password cho: nammai88208@gmail.com...
+[2026-05-29 21:13:37] THÀNH CÔNG: Đã gửi mail reset password cho nammai88208@gmail.com
+[2026-05-29 21:15:50] POST request detected in chitiet.php. User ID: 60
+[2026-05-29 21:15:50] Bắt đầu truy vấn tìm KhachHang với UserID: 60
+[2026-05-29 21:15:50] Bắt đầu quy trình gửi mail từ chitiet.php cho nammai88208@gmail.com (MaKH: 97)
+[2026-05-29 21:16:12] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho nammai88208@gmail.com
+[2026-05-29 21:16:12] GỌI HÀM sendBookingConfirmation cho: nammai88208@gmail.com
+[2026-05-29 21:16:12] ĐANG GỬI mail xác nhận cho: nammai88208@gmail.com...
+[2026-05-29 21:16:16] THÀNH CÔNG: Đã gửi mail xác nhận cho nammai88208@gmail.com
+[2026-05-29 21:16:48] GỌI HÀM sendInvoiceEmail cho: nammai88208@gmail.com
+[2026-05-29 21:16:48] ĐANG GỬI mail hóa đơn cho: nammai88208@gmail.com...
+[2026-05-29 21:16:52] THÀNH CÔNG: Đã gửi mail hóa đơn cho nammai88208@gmail.com
+[2026-05-29 21:18:10] POST request detected in chitiet.php. User ID: 60
+[2026-05-29 21:18:10] Bắt đầu truy vấn tìm KhachHang với UserID: 60
+[2026-05-29 21:18:10] Bắt đầu quy trình gửi mail từ chitiet.php cho nammai88208@gmail.com (MaKH: 97)
+[2026-05-29 21:18:22] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho nammai88208@gmail.com
+[2026-05-29 21:18:22] GỌI HÀM sendBookingConfirmation cho: nammai88208@gmail.com
+[2026-05-29 21:18:22] ĐANG GỬI mail xác nhận cho: nammai88208@gmail.com...
+[2026-05-29 21:18:26] THÀNH CÔNG: Đã gửi mail xác nhận cho nammai88208@gmail.com
+[2026-05-29 21:18:40] GỌI HÀM sendInvoiceEmail cho: nammai88208@gmail.com
+[2026-05-29 21:18:40] ĐANG GỬI mail hóa đơn cho: nammai88208@gmail.com...
+[2026-05-29 21:18:45] THÀNH CÔNG: Đã gửi mail hóa đơn cho nammai88208@gmail.com
+[2026-05-29 21:23:31] GỌI HÀM sendOtpEmail cho: nammai88208@gmail.com
+[2026-05-29 21:23:31] ĐANG GỬI mail OTP cho: nammai88208@gmail.com...
+[2026-05-29 21:23:36] THÀNH CÔNG: Đã gửi mail OTP cho nammai88208@gmail.com
+[2026-05-29 21:24:02] GỌI HÀM sendResetPasswordEmail cho: nammai88208@gmail.com
+[2026-05-29 21:24:02] ĐANG GỬI mail reset password cho: nammai88208@gmail.com...
+[2026-05-29 21:24:06] THÀNH CÔNG: Đã gửi mail reset password cho nammai88208@gmail.com
+[2026-05-29 21:27:51] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-29 21:27:51] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-29 21:27:56] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-29 21:27:56] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-29 21:27:56] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-29 21:28:00] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-29 21:28:38] GỌI HÀM sendResetPasswordEmail cho: kietvo.260605@gmail.com
+[2026-05-29 21:28:38] ĐANG GỬI mail reset password cho: kietvo.260605@gmail.com...
+[2026-05-29 21:28:43] THÀNH CÔNG: Đã gửi mail reset password cho kietvo.260605@gmail.com
+[2026-05-29 21:30:06] POST request detected in chitiet.php. User ID: 62
+[2026-05-29 21:30:06] Bắt đầu truy vấn tìm KhachHang với UserID: 62
+[2026-05-29 21:30:06] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 99)
+[2026-05-29 21:30:16] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-29 21:30:16] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-29 21:30:16] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-29 21:30:21] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-29 21:30:42] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-29 21:30:42] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-29 21:30:47] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-29 21:31:38] POST request detected in chitiet.php. User ID: 62
+[2026-05-29 21:31:38] Bắt đầu truy vấn tìm KhachHang với UserID: 62
+[2026-05-29 21:31:38] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 99)
+[2026-05-29 21:31:44] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-29 21:31:44] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-29 21:31:44] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-29 21:31:49] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-29 21:32:10] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-29 21:32:10] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-29 21:32:14] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-29 21:33:35] POST request detected in chitiet.php. User ID: 62
+[2026-05-29 21:33:35] Bắt đầu truy vấn tìm KhachHang với UserID: 62
+[2026-05-29 21:33:35] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 99)
+[2026-05-29 21:33:45] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-29 21:33:45] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-29 21:33:45] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-29 21:33:49] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-30 11:21:55] POST request detected in chitiet.php. User ID: 62
+[2026-05-30 11:21:55] Bắt đầu truy vấn tìm KhachHang với UserID: 62
+[2026-05-30 11:21:55] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 99)
+[2026-05-30 11:22:10] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-30 11:22:10] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-30 11:22:10] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-30 11:22:18] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-30 11:22:36] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-30 11:22:36] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-30 11:22:41] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-30 12:15:23] POST request detected in chitiet.php. User ID: 51
+[2026-05-30 12:15:23] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-30 12:17:12] POST request detected in chitiet.php. User ID: 51
+[2026-05-30 12:17:12] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-30 12:17:28] POST request detected in chitiet.php. User ID: 51
+[2026-05-30 12:17:28] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-30 12:19:18] POST request detected in chitiet.php. User ID: 51
+[2026-05-30 12:19:18] Bắt đầu truy vấn tìm KhachHang với UserID: 51
+[2026-05-30 12:19:18] Bắt đầu quy trình gửi mail từ chitiet.php cho voanhkiet26625@gmail.com (MaKH: 88)
+[2026-05-30 12:38:11] GỌI HÀM sendResetPasswordEmail cho: kietvo.260605@gmail.com
+[2026-05-30 12:38:11] ĐANG GỬI mail reset password cho: kietvo.260605@gmail.com...
+[2026-05-30 12:38:19] THÀNH CÔNG: Đã gửi mail reset password cho kietvo.260605@gmail.com
+[2026-05-30 12:38:19] GỌI HÀM sendResetPasswordEmail cho: kietvo.260605@gmail.com
+[2026-05-30 12:38:19] ĐANG GỬI mail reset password cho: kietvo.260605@gmail.com...
+[2026-05-30 12:38:24] THÀNH CÔNG: Đã gửi mail reset password cho kietvo.260605@gmail.com
+[2026-05-30 12:38:24] GỌI HÀM sendResetPasswordEmail cho: kietvo.260605@gmail.com
+[2026-05-30 12:38:24] ĐANG GỬI mail reset password cho: kietvo.260605@gmail.com...
+[2026-05-30 12:38:29] THÀNH CÔNG: Đã gửi mail reset password cho kietvo.260605@gmail.com
+[2026-05-30 12:38:29] GỌI HÀM sendResetPasswordEmail cho: kietvo.260605@gmail.com
+[2026-05-30 12:38:29] ĐANG GỬI mail reset password cho: kietvo.260605@gmail.com...
+[2026-05-30 12:38:33] THÀNH CÔNG: Đã gửi mail reset password cho kietvo.260605@gmail.com
+[2026-05-30 12:42:55] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-30 12:42:55] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-30 12:43:01] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-30 12:46:36] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-30 12:46:36] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-30 12:46:40] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-30 12:47:43] POST request detected in chitiet.php. User ID: 64
+[2026-05-30 12:47:43] Bắt đầu truy vấn tìm KhachHang với UserID: 64
+[2026-05-30 12:47:43] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 101)
+[2026-05-30 12:48:01] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-30 12:48:01] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-30 12:48:01] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-30 12:48:05] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-30 12:48:41] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-30 12:48:41] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-30 12:48:46] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-30 12:49:23] POST request detected in chitiet.php. User ID: 64
+[2026-05-30 12:49:23] Bắt đầu truy vấn tìm KhachHang với UserID: 64
+[2026-05-30 12:49:23] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 101)
+[2026-05-30 12:49:29] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-30 12:49:29] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-30 12:49:29] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-30 12:49:36] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-30 12:49:55] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-30 12:49:55] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-30 12:50:03] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-30 12:53:17] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-05-30 12:53:17] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-05-30 12:53:23] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-05-30 12:53:50] GỌI HÀM sendResetPasswordEmail cho: kietvo.260605@gmail.com
+[2026-05-30 12:53:50] ĐANG GỬI mail reset password cho: kietvo.260605@gmail.com...
+[2026-05-30 12:53:55] THÀNH CÔNG: Đã gửi mail reset password cho kietvo.260605@gmail.com
+[2026-05-30 12:55:27] POST request detected in chitiet.php. User ID: 65
+[2026-05-30 12:55:27] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-05-30 12:55:27] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-05-30 12:55:36] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-30 12:55:36] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-30 12:55:36] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-30 12:55:41] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-30 12:56:01] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-30 12:56:01] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-30 12:56:06] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-30 12:57:00] POST request detected in chitiet.php. User ID: 65
+[2026-05-30 12:57:00] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-05-30 12:57:00] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-05-30 12:57:10] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-05-30 12:57:10] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-05-30 12:57:10] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-05-30 12:57:18] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-05-30 12:57:27] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-05-30 12:57:27] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-05-30 12:57:32] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-05-31 20:57:18] GỌI HÀM sendOtpEmail cho: nammai88208@gmail.com
+[2026-05-31 20:57:18] ĐANG GỬI mail OTP cho: nammai88208@gmail.com...
+[2026-05-31 20:57:23] THÀNH CÔNG: Đã gửi mail OTP cho nammai88208@gmail.com
+[2026-05-31 21:05:27] GỌI HÀM sendResetPasswordEmail cho: kietvo.260605@gmail.com
+[2026-05-31 21:05:27] ĐANG GỬI mail reset password cho: kietvo.260605@gmail.com...
+[2026-05-31 21:05:31] THÀNH CÔNG: Đã gửi mail reset password cho kietvo.260605@gmail.com
+[2026-06-03 22:21:09] POST request detected in chitiet.php. User ID: 65
+[2026-06-03 22:21:09] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-03 22:21:09] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-06-03 22:21:36] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-03 22:21:36] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-03 22:21:36] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-03 22:21:41] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-03 22:22:13] POST request detected in chitiet.php. User ID: 65
+[2026-06-03 22:22:13] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-03 22:22:13] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-06-03 22:24:57] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-03 22:24:57] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-03 22:24:57] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-03 22:25:01] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-03 22:25:42] POST request detected in chitiet.php. User ID: 65
+[2026-06-03 22:25:42] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-03 22:25:42] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-06-03 22:26:02] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-03 22:26:02] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-03 22:26:02] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-03 22:26:06] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-03 23:15:27] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-03 23:15:27] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-03 23:15:27] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-03 23:15:32] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-03 23:16:17] POST request detected in chitiet.php. User ID: 65
+[2026-06-03 23:16:17] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-03 23:16:17] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-06-03 23:16:32] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-03 23:16:32] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-03 23:16:32] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-03 23:16:36] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-03 23:27:24] POST request detected in chitiet.php. User ID: 65
+[2026-06-03 23:27:24] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-03 23:27:24] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-06-03 23:27:32] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-03 23:27:32] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-03 23:27:32] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-03 23:27:36] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-03 23:27:37] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-03 23:27:37] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-03 23:27:37] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-03 23:27:42] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-03 23:31:10] POST request detected in chitiet.php. User ID: 65
+[2026-06-03 23:31:10] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-03 23:31:10] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-06-03 23:31:20] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-03 23:31:20] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-03 23:31:20] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-03 23:31:25] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-03 23:31:25] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-03 23:31:25] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-03 23:31:25] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-03 23:31:30] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-03 23:38:02] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-03 23:38:02] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-03 23:38:02] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-03 23:38:07] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-04 09:08:13] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-06-04 09:08:14] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-06-04 09:08:22] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-06-04 09:16:10] GỌI HÀM sendOtpEmail cho: doquanglinh02092005@gmail.com
+[2026-06-04 09:16:10] ĐANG GỬI mail OTP cho: doquanglinh02092005@gmail.com...
+[2026-06-04 09:16:17] THÀNH CÔNG: Đã gửi mail OTP cho doquanglinh02092005@gmail.com
+[2026-06-04 10:41:34] POST request detected in chitiet.php. User ID: 65
+[2026-06-04 10:41:34] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-04 10:41:34] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-06-04 10:42:11] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-04 10:42:11] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-04 10:42:11] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-04 10:42:16] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-04 10:45:38] POST request detected in chitiet.php. User ID: 65
+[2026-06-04 10:45:38] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-04 10:45:38] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-06-04 10:45:44] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-04 10:45:44] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-04 10:45:44] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-04 10:45:49] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-04 10:50:30] POST request detected in chitiet.php. User ID: 65
+[2026-06-04 10:50:30] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-04 10:50:30] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-06-04 10:50:37] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-04 10:50:37] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-04 10:50:37] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-04 10:50:43] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-04 10:50:43] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-04 10:50:43] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-04 10:50:43] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-04 10:50:47] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-04 11:00:21] POST request detected in chitiet.php. User ID: 65
+[2026-06-04 11:00:21] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-04 11:00:21] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-06-04 11:00:28] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-04 11:00:28] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-04 11:00:28] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-04 11:00:33] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-04 11:01:14] POST request detected in chitiet.php. User ID: 65
+[2026-06-04 11:01:14] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-04 11:01:37] POST request detected in chitiet.php. User ID: 65
+[2026-06-04 11:01:37] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-04 11:01:37] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-06-04 11:01:43] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-04 11:01:43] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-04 11:01:43] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-04 11:01:48] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-04 11:02:54] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-06-04 11:02:54] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-06-04 11:02:58] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-06-06 12:06:36] POST request detected in chitiet.php. User ID: 65
+[2026-06-06 12:06:36] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-06 12:06:36] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-06-06 12:07:27] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-06 12:07:27] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-06 12:07:27] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-06 12:07:31] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-06 12:09:11] POST request detected in chitiet.php. User ID: 65
+[2026-06-06 12:09:11] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-06 12:09:11] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 102)
+[2026-06-06 12:09:17] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-06 12:09:17] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-06 12:09:17] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-06 12:09:22] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-06 12:09:40] POST request detected in chitiet.php. User ID: 65
+[2026-06-06 12:09:40] Bắt đầu truy vấn tìm KhachHang với UserID: 65
+[2026-06-06 12:48:12] POST request detected in chitiet.php. User ID: 65
+[2026-06-06 13:20:16] GỌI HÀM sendOtpEmail cho: kietvo.260605@gmail.com
+[2026-06-06 13:20:16] ĐANG GỬI mail OTP cho: kietvo.260605@gmail.com...
+[2026-06-06 13:20:20] THÀNH CÔNG: Đã gửi mail OTP cho kietvo.260605@gmail.com
+[2026-06-06 13:21:28] POST request detected in chitiet.php. User ID: 66
+[2026-06-06 13:21:28] Bắt đầu truy vấn tìm KhachHang với UserID: 66
+[2026-06-06 13:21:28] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 103)
+[2026-06-06 13:21:51] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-06 13:21:51] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-06 13:21:51] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-06 13:21:55] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-06 13:22:54] POST request detected in chitiet.php. User ID: 66
+[2026-06-06 13:22:54] Bắt đầu truy vấn tìm KhachHang với UserID: 66
+[2026-06-06 13:23:11] GỌI HÀM sendInvoiceEmail cho: kietvo.260605@gmail.com
+[2026-06-06 13:23:11] ĐANG GỬI mail hóa đơn cho: kietvo.260605@gmail.com...
+[2026-06-06 13:23:16] THÀNH CÔNG: Đã gửi mail hóa đơn cho kietvo.260605@gmail.com
+[2026-06-06 13:23:20] POST request detected in chitiet.php. User ID: 66
+[2026-06-06 13:23:20] Bắt đầu truy vấn tìm KhachHang với UserID: 66
+[2026-06-06 13:28:53] POST request detected in chitiet.php. User ID: 66
+[2026-06-06 13:28:53] Bắt đầu truy vấn tìm KhachHang với UserID: 66
+[2026-06-06 13:28:53] Bắt đầu quy trình gửi mail từ chitiet.php cho kietvo.260605@gmail.com (MaKH: 103)
+[2026-06-06 13:29:21] Yêu cầu gửi mail Duyệt đơn từ xacnhan.php cho kietvo.260605@gmail.com
+[2026-06-06 13:29:21] GỌI HÀM sendBookingConfirmation cho: kietvo.260605@gmail.com
+[2026-06-06 13:29:21] ĐANG GỬI mail xác nhận cho: kietvo.260605@gmail.com...
+[2026-06-06 13:29:25] THÀNH CÔNG: Đã gửi mail xác nhận cho kietvo.260605@gmail.com
+[2026-06-06 13:36:45] POST request detected in chitiet.php. User ID: 66
+[2026-06-06 13:36:45] Bắt đầu truy vấn tìm KhachHang với UserID: 66
+[2026-06-06 13:36:45] Không tìm thấy KhachHang cho UserID: 66, tạo mới...
+[2026-06-06 13:36:45] KHÔNG gửi mail từ chitiet.php vì Email rỗng. MaKH: 104, HoTen: 2

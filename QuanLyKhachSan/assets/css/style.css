@@ -1,0 +1,488 @@
+/* assets/css/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #2563eb;
+    --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    --secondary-color: #3b82f6;
+    --accent-color: #f59e0b;
+    --bg-color: #f8fafc;
+    --sidebar-bg: #0f172a;
+    --sidebar-hover: rgba(255, 255, 255, 0.1);
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.3);
+    --border-radius: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+/* ================== LAYOUT ================== */
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    min-height: 100vh;
+}
+
+/* ================== SIDEBAR (Mới tinh) ================== */
+#sidebar {
+    min-width: 260px;
+    max-width: 260px;
+    background: var(--sidebar-bg);
+    background-image: radial-gradient(circle at top right, #1e293b 0%, transparent 40%);
+    color: #fff;
+    transition: var(--transition);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+}
+
+#sidebar .sidebar-header {
+    padding: 25px 20px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.7rem;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Outfit', sans-serif;
+}
+
+#sidebar ul.components {
+    padding: 20px 15px;
+}
+
+#sidebar ul li {
+    margin-bottom: 8px;
+}
+
+#sidebar ul li a {
+    padding: 14px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+#sidebar ul li a i {
+    width: 30px;
+    font-size: 1.1rem;
+    text-align: left;
+    transition: transform 0.2s;
+}
+
+#sidebar ul li a:hover {
+    color: #fff;
+    background: var(--sidebar-hover);
+    transform: translateX(5px);
+}
+
+#sidebar ul li a.active {
+    color: #fff;
+    background: var(--primary-gradient);
+    box-shadow: var(--shadow-glow);
+    font-weight: 600;
+}
+#sidebar ul li a.active i {
+    color: #fff;
+}
+
+/* ================== MAIN CONTENT ================== */
+#content {
+    width: 100%;
+    padding: 30px;
+    transition: var(--transition);
+    background: var(--bg-color);
+}
+
+/* ================== NAVBAR TOPTEN ================== */
+.navbar {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-sm);
+    padding: 15px 25px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar .btn-primary {
+    background: var(--primary-color);
+    border: none;
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+}
+
+/* ================== CARDS & GLASSMORPHISM ================== */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    /* Remove overflow: hidden vì sẽ làm mất Box Dropdown của phòng */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ================== SƠ ĐỒ PHÒNG ================== */
+.room-card {
+    cursor: pointer;
+    text-align: center;
+    padding: 25px 20px;
+    color: white;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+.room-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%);
+    opacity: 0.5;
+}
+
+.room-trong { 
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%); 
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+}
+.room-dang-o { 
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); 
+    box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+}
+.room-don-dep { 
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); 
+    box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+}
+
+.room-card h3 {
+    font-size: 1.8rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* ================== TABLES ================== */
+.table-responsive {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+.table {
+    background: white;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .table-stackable thead {
+        display: none;
+    }
+    .table-stackable tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        background: white;
+    }
+    .table-stackable td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        border-bottom: 1px solid var(--border-color);
+        padding: 12px 15px;
+    }
+    .table-stackable td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        text-align: left;
+        margin-right: 10px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        font-size: 0.7rem;
+    }
+    .table-stackable td:last-child {
+        border-bottom: none;
+    }
+}
+
+/* ================== BUTTONS & BADGES ================== */
+.btn {
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: var(--transition);
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.02em;
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    border: none;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+.btn-primary:hover {
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+    transform: translateY(-2px);
+}
+
+.badge {
+    padding: 0.5em 0.8em;
+    font-weight: 600;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* ================== EFFECTS ================== */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Fix: Chỉ áp dụng fadeInUp ở các component chính định sẵn thay vì đè lên Bootstrap lưới */
+.table-responsive {
+    animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* ================== FRONTEND & LOGIN UI ================== */
+nav.navbar-dark {
+    background: var(--sidebar-bg) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+}
+
+/* Khôi phục CSS Kính mờ (Glass-panel) cho form đăng nhập bị lỗi */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
+.filter-box {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: var(--shadow-lg);
+}
+
+.form-control, .form-select {
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* ================== FRONTEND PREMIUM UI ================== */
+.frontend-navbar {
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.hero-section {
+    position: relative;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+.hero-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('../img/premium_luxury_resort_hero_1777033980264.png') center/cover;
+    z-index: -2;
+    animation: zoomOut 20s ease-out infinite alternate;
+}
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.4) 100%);
+    z-index: -1;
+}
+
+@keyframes zoomOut {
+    0% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.text-gradient-gold {
+    background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 20px rgba(248, 181, 0, 0.3);
+}
+
+.text-gradient-primary {
+    background: var(--primary-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.reveal-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.reveal-up.delay-1 { animation-delay: 0.2s; }
+.reveal-up.delay-2 { animation-delay: 0.4s; }
+.reveal-up.delay-3 { animation-delay: 0.6s; }
+.reveal-up.delay-4 { animation-delay: 0.8s; }
+
+@keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.premium-card {
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.premium-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+}
+.premium-card .card-img-top {
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.premium-card:hover .card-img-top {
+    transform: scale(1.08);
+}
+.premium-card .card-body {
+    padding: 25px;
+    position: relative;
+    z-index: 1;
+    background: white;
+}
+
+/* ================== HILTON CLONE UI ================== */
+.hilton-nav {
+    font-family: 'Proxima Nova', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.hilton-nav .nav-link {
+    font-weight: 600;
+}
+
+.hilton-search-bar {
+    border-color: #d1d1d1 !important;
+}
+
+.hilton-search-bar input:focus {
+    box-shadow: none !important;
+}
+
+.hover-bg-light {
+    transition: background-color 0.2s;
+}
+
+.hover-bg-light:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+.btn-dark-blue {
+    background-color: #0d466f;
+    color: white;
+}
+.btn-dark-blue:hover {
+    background-color: #0b3c5f;
+    color: white;
+}
+
+.hilton-promo-teal {
+    background-color: #00768e;
+}
+
+.fs-7 {
+    font-size: 0.85rem;
+}
+.fs-8 {
+    font-size: 0.75rem;
+}
+
+.hover-opacity-100:hover {
+    opacity: 1 !important;
+    cursor: pointer;
+}
+
+/* ================== DYNAMIC PREMIUM ANIMATIONS ================== */
+@keyframes bounceGently {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+.bounce-anim {
+    animation: bounceGently 4s ease-in-out infinite;
+}
+
+.hover-zoom {
+    transition: transform 0.8s ease;
+}
+.hover-zoom:hover {
+    transform: scale(1.05);
+}
+
+.tracking-widest {
+    letter-spacing: 3px;
+}
+
+.shadow-text {
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+

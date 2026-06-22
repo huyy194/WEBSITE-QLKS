@@ -1,0 +1,864 @@
+<?php
+session_start();
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+require_once 'config/database.php';
+
+// Thuật toán Recommendation System Nâng Cao (Content-based Filtering)
+$recommendations = [];
+if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'khach') {
+    $userid = $_SESSION['user_id'];
+    // 1. Phân tích lịch sử đặt phòng của khách hàng
+    $sql_history = "SELECT lp.MaLoai, lp.GiaPhong, lp.TienNghi, lp.SoNguoiToiDa 
+                    FROM DatPhong dp 
+                    JOIN KhachHang kh ON dp.MaKH = kh.MaKH 
+                    JOIN Phong p ON dp.MaPhong = p.MaPhong 
+                    JOIN LoaiPhong lp ON p.MaLoai = lp.MaLoai
+                    WHERE kh.MaTK = $userid AND dp.TrangThai IN ('Đang ở', 'Đã thanh toán')";
+    $res_history = $conn->query($sql_history);
+    
+    if ($res_history && $res_history->num_rows > 0) {
+        $avg_price = 0;
+        $max_guest = 0;
+        $amenities = [];
+        $count = 0;
+        while ($row = $res_history->fetch_assoc()) {
+            $avg_price += $row['GiaPhong'];
+            if ($row['SoNguoiToiDa'] > $max_guest) $max_guest = $row['SoNguoiToiDa'];
+            $items = array_map('trim', explode(',', $row['TienNghi']));
+            foreach($items as $i) $amenities[$i] = ($amenities[$i] ?? 0) + 1;
+            $count++;
+        }
+        $avg_price = $avg_price / $count;
+        
+        // Trích xuất 2 tiện nghi được quan tâm nhất
+        arsort($amenities);
+        $top_amenities = array_slice(array_keys($amenities), 0, 2);
+        
+        // 2. Chấm điểm SimilarityScore cho các phòng trống
+        $price_min = $avg_price * 0.7; // +- 30-50%
+        $price_max = $avg_price * 1.5;
+        
+        $amenity_sql_parts = [];
+        foreach($top_amenities as $a) {
+            $amenity_sql_parts[] = "IF(lp.TienNghi LIKE '%" . $conn->real_escape_string($a) . "%', 2, 0)";
+        }
+        $amenity_score_sql = count($amenity_sql_parts) > 0 ? implode(" + ", $amenity_sql_parts) : "0";
+        
+        $sql_sug = "SELECT p.*, lp.TenLoai, lp.GiaPhong, lp.HinhAnh, lp.TienNghi, lp.SoNguoiToiDa,
+                    (
+                      IF(lp.GiaPhong BETWEEN $price_min AND $price_max, 2, 0) +
+                      IF(lp.SoNguoiToiDa = $max_guest OR lp.SoNguoiToiDa = $max_guest + 1, 2, 0) + 
+                      ($amenity_score_sql)
+                    ) as SimilarityScore
+                    FROM Phong p 
+                    JOIN LoaiPhong lp ON p.MaLoai = lp.MaLoai 
+                    WHERE p.TrangThai = 'Trống'
+                    ORDER BY SimilarityScore DESC, lp.GiaPhong ASC LIMIT 4";
+                    
+        $rec_result = $conn->query($sql_sug);
+        while ($r = $rec_result->fetch_assoc()) $recommendations[] = $r;
+    }
+}
+
+// Fallback: Nổi bật
+if (count($recommendations) == 0) {
+    // Nếu hết phòng trống thì show phòng bất kỳ cũng được (demo)
+    $res = $conn->query("SELECT p.*, lp.TenLoai, lp.GiaPhong, lp.HinhAnh, lp.TienNghi, lp.SoNguoiToiDa 
+                         FROM Phong p JOIN LoaiPhong lp ON p.MaLoai = lp.MaLoai 
+                         WHERE p.TrangThai = 'Trống' ORDER BY lp.GiaPhong DESC LIMIT 4");
+    while ($r = $res->fetch_assoc()) $recommendations[] = $r;
+}
+?>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>K-Hotel - Nghỉ Dưỡng Đẳng Cấp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+    /* ========= HILTON DATE PICKER ========= */
+    .date-picker-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9998;
+    }
+    .date-picker-popup {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+        padding: 24px;
+        min-width: 620px;
+        border: 1px solid #e5e7eb;
+    }
+    .date-picker-popup.show { display: block; }
+    .date-picker-overlay.show { display: block; }
+    .dp-month-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+    .dp-month-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+    }
+    .dp-month-title {
+        font-weight: 700;
+        font-size: 1rem;
+        color: #1e293b;
+    }
+    .dp-nav-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #64748b;
+        padding: 4px 8px;
+        border-radius: 6px;
+        transition: background 0.2s;
+        font-size: 1rem;
+    }
+    .dp-nav-btn:hover { background: #f1f5f9; color: #1e293b; }
+    .dp-weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+        margin-bottom: 4px;
+    }
+    .dp-weekday {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #94a3b8;
+        padding: 4px 0;
+        text-transform: uppercase;
+    }
+    .dp-days-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 2px;
+    }
+    .dp-day {
+        text-align: center;
+        padding: 8px 4px;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        color: #374151;
+        transition: background 0.15s, color 0.15s;
+        border: none;
+        background: none;
+    }
+    .dp-day:hover:not(.dp-disabled):not(.dp-selected):not(.dp-in-range) {
+        background: #f1f5f9;
+    }
+    .dp-day.dp-disabled { color: #d1d5db; cursor: not-allowed; }
+    .dp-day.dp-today { font-weight: 700; color: #1e3a5f; }
+    .dp-day.dp-selected {
+        background: #1e3a5f !important;
+        color: white !important;
+        border-radius: 6px;
+        font-weight: 700;
+    }
+    .dp-day.dp-in-range {
+        background: #dbeafe;
+        color: #1e40af;
+        border-radius: 0;
+    }
+    .dp-day.dp-range-start { border-radius: 6px 0 0 6px !important; }
+    .dp-day.dp-range-end { border-radius: 0 6px 6px 0 !important; }
+    .dp-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid #f1f5f9;
+    }
+    .dp-selected-display {
+        font-size: 0.85rem;
+        color: #64748b;
+    }
+    .dp-selected-display strong { color: #1e293b; }
+    /* Date trigger display */
+    .date-trigger {
+        cursor: pointer;
+        user-select: none;
+    }
+    .date-trigger-val { font-size: 0.9rem; font-weight: 600; color: #1e293b; }
+    .date-trigger-placeholder { font-size: 0.8rem; color: #94a3b8; }
+    .date-trigger.selected .date-trigger-placeholder { display: none; }
+    .date-trigger:not(.selected) .date-trigger-val { display: none; }
+    /* Responsive */
+    @media (max-width: 660px) {
+        .date-picker-popup { min-width: 320px; }
+        .dp-month-grid { grid-template-columns: 1fr; gap: 16px; }
+        .dp-month-second { display: none; }
+    }
+    /* ===== GUEST PICKER POPUP ===== */
+    .guest-picker-popup {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 80px;
+        z-index: 9999;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+        padding: 24px;
+        min-width: 360px;
+        border: 1px solid #e5e7eb;
+    }
+    .guest-picker-popup.show { display: block; }
+    .gp-header {
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 16px;
+    }
+    .gp-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+    }
+    .gp-label-main { font-weight: 700; font-size: 0.95rem; color: #1e293b; }
+    .gp-label-sub { font-size: 0.78rem; color: #94a3b8; margin-top: 2px; }
+    .gp-cols { display: flex; gap: 32px; }
+    .gp-col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .gp-col-label { font-size: 0.78rem; font-weight: 600; color: #64748b; }
+    .gp-counter { display: flex; align-items: center; gap: 12px; }
+    .gp-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid #cbd5e1;
+        background: white;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.8rem;
+        color: #1e293b;
+        transition: all 0.15s;
+    }
+    .gp-btn:hover:not(:disabled) { border-color: #1e3a5f; color: #1e3a5f; background: #f0f4ff; }
+    .gp-btn:disabled { border-color: #e2e8f0; color: #cbd5e1; cursor: not-allowed; }
+    .gp-count { font-size: 1.1rem; font-weight: 700; min-width: 24px; text-align: center; color: #1e293b; }
+    .gp-divider { border: none; border-top: 1px solid #f1f5f9; margin: 8px 0; }
+    .gp-add-room {
+        color: #1e3a5f; font-weight: 600; font-size: 0.9rem;
+        cursor: pointer; padding: 10px 0; display: flex; align-items: center;
+        transition: opacity 0.2s;
+    }
+    .gp-add-room:hover { opacity: 0.7; }
+    .gp-add-note { font-weight: 400; color: #94a3b8; font-size: 0.8rem; margin-left: 4px; }
+    .gp-note { font-size: 0.82rem; color: #64748b; margin: 8px 0 16px; }
+    .gp-footer { display: flex; gap: 10px; }
+    .gp-done {
+        flex: 1; padding: 10px 20px; background: #1e3a5f; color: white;
+        border: none; border-radius: 99px; font-weight: 700; font-size: 0.9rem;
+        cursor: pointer; transition: background 0.2s;
+    }
+    .gp-done:hover { background: #0f2444; }
+    .gp-cancel {
+        padding: 10px 20px; background: white; color: #64748b;
+        border: 1.5px solid #e2e8f0; border-radius: 99px; font-weight: 600;
+        font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
+    }
+    .gp-cancel:hover { border-color: #94a3b8; }
+    </style>
+</head>
+<body class="bg-light">
+
+<?php include 'include/header_customer.php'; ?>
+
+<!-- Booking Search Bar (Hilton Style with Calendar) -->
+<div class="bg-white border-bottom py-3 shadow-sm" style="position:relative;z-index:100;">
+    <div class="container">
+        <form action="timkiem.php" method="GET" id="searchForm" class="row g-0 align-items-center hilton-search-bar border rounded-1">
+            <!-- Hidden date inputs (submitted with form) -->
+            <input type="hidden" name="checkin" id="hiddenCheckin">
+            <input type="hidden" name="checkout" id="hiddenCheckout">
+            
+            <!-- Destination -->
+            <div class="col-md-4 col-sm-12 border-end p-2 d-flex align-items-center hover-bg-light position-relative">
+                <i class="fa-solid fa-magnifying-glass ms-2 text-muted"></i>
+                <div class="ms-3 w-100">
+                    <label class="form-label mb-0 fw-bold" style="font-size:0.78rem;">Bạn muốn đi đâu? <span class="fw-normal text-muted">(Bắt buộc)</span></label>
+                    <input type="text" name="q" class="form-control border-0 p-0 shadow-none fs-6" placeholder="biển, núi, sài gòn, hà nội...">
+                </div>
+            </div>
+
+            <!-- Check-in Trigger -->
+            <div class="col-md-2 col-sm-6 border-end p-2 date-trigger position-relative hover-bg-light justify-content-center d-flex align-items-center border-top-sm" id="triggerCheckin" onclick="openDatePicker()">
+                <i class="fa-regular fa-calendar-days text-muted fs-5 flex-shrink-0"></i>
+                <div class="ms-2">
+                    <div class="fw-bold" style="font-size:0.82rem;">Nhận phòng</div>
+                    <div class="date-trigger-placeholder text-muted" style="font-size:0.78rem;">Thêm ngày</div>
+                    <div class="date-trigger-val" style="display:none;font-size:0.82rem;"></div>
+                </div>
+            </div>
+
+            <!-- Check-out Trigger -->
+            <div class="col-md-2 col-sm-6 border-end p-2 date-trigger position-relative hover-bg-light justify-content-center d-flex align-items-center border-top-sm" id="triggerCheckout" onclick="openDatePicker()">
+                <i class="fa-regular fa-calendar-days text-muted fs-5 flex-shrink-0"></i>
+                <div class="ms-2">
+                    <div class="fw-bold" style="font-size:0.82rem;">Trả phòng</div>
+                    <div class="date-trigger-placeholder text-muted" style="font-size:0.78rem;">Thêm ngày</div>
+                    <div class="date-trigger-val" style="display:none;font-size:0.82rem;"></div>
+                </div>
+            </div>
+
+            <!-- Guest Picker Trigger -->
+            <div class="col-md-2 col-sm-6 border-end p-2 d-flex align-items-center hover-bg-light justify-content-center border-top-sm position-relative"
+                 id="guestTrigger" onclick="toggleGuestPicker(event)" style="cursor:pointer;user-select:none;">
+                <i class="fa-regular fa-user text-muted fs-5 flex-shrink-0"></i>
+                <input type="hidden" name="rooms" id="hiddenRooms" value="1">
+                <input type="hidden" name="adults" id="hiddenAdults" value="1">
+                <input type="hidden" name="kids" id="hiddenKids" value="0">
+                <div class="ms-2">
+                    <div class="fw-bold" style="font-size:0.82rem;">Phòng &amp; Khách</div>
+                    <div class="text-muted" id="guestSummary" style="font-size:0.78rem;">1 phòng, 1 người lớn</div>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="col-md-2 col-sm-6 p-2 text-end d-flex align-items-center justify-content-evenly border-top-sm">
+                <div class="text-center d-flex flex-column align-items-center d-none d-xl-flex">
+                    <i class="fa-solid fa-tag text-muted"></i>
+                    <span style="font-size:0.75rem;">Giá đặc biệt</span>
+                </div>
+                <button type="submit" class="btn btn-dark-blue fw-bold px-3 py-2 rounded-1">Tìm khách sạn</button>
+            </div>
+        </form>
+
+        <!-- Date Picker Popup -->
+        <div class="date-picker-overlay" id="dpOverlay" onclick="closeDatePicker()"></div>
+        <div class="date-picker-popup" id="datePicker">
+            <div class="dp-month-grid" id="dpGrid"></div>
+            <div class="dp-footer">
+                <div class="dp-selected-display" id="dpDisplay">Chọn ngày nhận phòng</div>
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="resetDates()">Đặt lại</button>
+                    <button type="button" class="btn rounded-pill px-4 fw-bold text-white" style="background:#1e3a5f;" onclick="confirmDates()">Xong</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guest Picker Popup (Hilton style) -->
+        <div class="guest-picker-popup" id="guestPicker">
+            <div class="gp-header">Phòng &amp; Khách</div>
+
+            <!-- Room 1 row -->
+            <div class="gp-row">
+                <div class="gp-label">
+                    <div class="gp-label-main">Phòng 1</div>
+                </div>
+                <div class="gp-cols">
+                    <div class="gp-col">
+                        <div class="gp-col-label">Người lớn</div>
+                        <div class="gp-counter">
+                            <button type="button" class="gp-btn" onclick="changeCount('adults',-1)">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <span class="gp-count" id="countAdults">1</span>
+                            <button type="button" class="gp-btn" onclick="changeCount('adults',1)">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="gp-col">
+                        <div class="gp-col-label">Trẻ em</div>
+                        <div class="gp-counter">
+                            <button type="button" class="gp-btn" onclick="changeCount('kids',-1)">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <span class="gp-count" id="countKids">0</span>
+                            <button type="button" class="gp-btn" onclick="changeCount('kids',1)">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gp-divider"></div>
+
+            <!-- Add room note -->
+            <div class="gp-add-room" onclick="addRoom()">
+                <i class="fa-solid fa-circle-plus me-2"></i>Thêm phòng
+                <span class="gp-add-note">(Tối đa 4 phòng)</span>
+            </div>
+            <div id="extraRooms"></div>
+
+            <div class="gp-divider"></div>
+
+            <p class="gp-note">Đặt từ 10 phòng trở lên? <a href="timkiem.php" style="color:#1e3a5f;font-weight:600;">Liên hệ đặt nhóm</a></p>
+
+            <div class="gp-footer">
+                <button type="button" class="gp-done" onclick="closeGuestPicker()">Xong</button>
+                <button type="button" class="gp-cancel" onclick="closeGuestPicker()">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============ HILTON DATE PICKER JS ============
+(function(){
+    const MONTHS_VI = ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
+    const DAYS_VI = ['CN','T2','T3','T4','T5','T6','T7'];
+    let startDate = null, endDate = null, hoverDate = null;
+    let viewYear = new Date().getFullYear();
+    let viewMonth = new Date().getMonth(); // 0-indexed
+    let selecting = false;
+
+    window.openDatePicker = function() {
+        document.getElementById('datePicker').classList.add('show');
+        document.getElementById('dpOverlay').classList.add('show');
+        renderCalendar();
+    };
+    window.closeDatePicker = function() {
+        document.getElementById('datePicker').classList.remove('show');
+        document.getElementById('dpOverlay').classList.remove('show');
+    };
+    window.resetDates = function() {
+        startDate = null; endDate = null; hoverDate = null; selecting = false;
+        updateDisplay();
+        renderCalendar();
+        document.getElementById('hiddenCheckin').value = '';
+        document.getElementById('hiddenCheckout').value = '';
+        document.querySelectorAll('.date-trigger').forEach(t => t.classList.remove('selected'));
+        document.querySelectorAll('.date-trigger .date-trigger-val').forEach(v => { v.style.display='none'; });
+        document.querySelectorAll('.date-trigger .date-trigger-placeholder').forEach(p => { p.style.display=''; });
+    };
+    window.confirmDates = function() {
+        if (startDate && endDate) {
+            closeDatePicker();
+            document.getElementById('hiddenCheckin').value = formatDate(startDate);
+            document.getElementById('hiddenCheckout').value = formatDate(endDate);
+            // Update visual displays
+            let ci = document.querySelector('#triggerCheckin .date-trigger-val');
+            let co = document.querySelector('#triggerCheckout .date-trigger-val');
+            let cp = document.querySelectorAll('.date-trigger .date-trigger-placeholder');
+            ci.textContent = formatDisplay(startDate);
+            co.textContent = formatDisplay(endDate);
+            ci.style.display = ''; co.style.display = '';
+            cp.forEach(p => p.style.display='none');
+        } else {
+            closeDatePicker();
+        }
+    };
+
+    function formatDate(d) {
+        return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    }
+    function formatDisplay(d) {
+        return String(d.getDate()).padStart(2,'0')+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
+    }
+
+    function navMonth(delta) {
+        viewMonth += delta;
+        if(viewMonth > 11) { viewMonth=0; viewYear++; }
+        if(viewMonth < 0) { viewMonth=11; viewYear--; }
+        renderCalendar();
+    }
+    window.navMonth = navMonth;
+
+    function updateDisplay() {
+        const el = document.getElementById('dpDisplay');
+        if(!startDate) { el.innerHTML = 'Chọn <strong>ngày nhận phòng</strong>'; }
+        else if(!endDate) { el.innerHTML = 'Nhận: <strong>'+formatDisplay(startDate)+'</strong> &nbsp;→&nbsp; Chọn <strong>ngày trả phòng</strong>'; }
+        else { el.innerHTML = 'Nhận: <strong>'+formatDisplay(startDate)+'</strong> &nbsp;→&nbsp; Trả: <strong>'+formatDisplay(endDate)+'</strong>'; }
+    }
+
+    function renderCalendar() {
+        const grid = document.getElementById('dpGrid');
+        grid.innerHTML = '';
+        // Render 2 months
+        for(let m=0; m<2; m++) {
+            let mo = (viewMonth + m) % 12;
+            let yr = viewYear + Math.floor((viewMonth + m) / 12);
+            grid.appendChild(renderMonth(yr, mo, m));
+        }
+        updateDisplay();
+    }
+
+    function renderMonth(yr, mo, idx) {
+        const div = document.createElement('div');
+        if(idx===1) div.classList.add('dp-month-second');
+        // Header
+        const hdr = document.createElement('div');
+        hdr.className = 'dp-month-header';
+        hdr.innerHTML = `
+            ${idx===0 ? `<button type="button" class="dp-nav-btn" onclick="navMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>` : '<span></span>'}
+            <span class="dp-month-title">${MONTHS_VI[mo]} ${yr}</span>
+            ${idx===1 ? `<button type="button" class="dp-nav-btn" onclick="navMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>` : '<span></span>'}
+        `;
+        div.appendChild(hdr);
+        // Weekday headers
+        const wkDiv = document.createElement('div');
+        wkDiv.className = 'dp-weekdays';
+        DAYS_VI.forEach(d => { const s=document.createElement('div'); s.className='dp-weekday'; s.textContent=d; wkDiv.appendChild(s); });
+        div.appendChild(wkDiv);
+        // Days grid
+        const daysDiv = document.createElement('div');
+        daysDiv.className = 'dp-days-grid';
+        const firstDay = new Date(yr, mo, 1).getDay();
+        const daysInMonth = new Date(yr, mo+1, 0).getDate();
+        const today = new Date(); today.setHours(0,0,0,0);
+        // Empty cells
+        for(let i=0;i<firstDay;i++) { const e=document.createElement('span'); daysDiv.appendChild(e); }
+        for(let d=1;d<=daysInMonth;d++) {
+            const dayDate = new Date(yr, mo, d);
+            const btn = document.createElement('button');
+            btn.type='button';
+            btn.className='dp-day';
+            btn.textContent=d;
+            if(dayDate < today) { btn.classList.add('dp-disabled'); }
+            else {
+                if(dayDate.toDateString()===today.toDateString()) btn.classList.add('dp-today');
+                if(startDate && dayDate.toDateString()===startDate.toDateString()) { btn.classList.add('dp-selected','dp-range-start'); }
+                if(endDate && dayDate.toDateString()===endDate.toDateString()) { btn.classList.add('dp-selected','dp-range-end'); }
+                if(startDate && endDate && dayDate>startDate && dayDate<endDate) btn.classList.add('dp-in-range');
+                if(startDate && !endDate && hoverDate && dayDate>startDate && dayDate<=hoverDate) btn.classList.add('dp-in-range');
+                btn.addEventListener('click', () => selectDay(dayDate));
+                btn.addEventListener('mouseenter', () => { hoverDate=dayDate; renderCalendar(); });
+            }
+            daysDiv.appendChild(btn);
+        }
+        div.appendChild(daysDiv);
+        return div;
+    }
+
+    function selectDay(date) {
+        if(!startDate || (startDate && endDate)) {
+            startDate = date; endDate = null; selecting=true;
+        } else {
+            if(date <= startDate) { startDate=date; endDate=null; }
+            else { endDate=date; selecting=false; }
+        }
+        hoverDate=null;
+        updateDisplay();
+        renderCalendar();
+    }
+
+    document.getElementById('dpGrid').addEventListener('mouseleave', () => { hoverDate=null; renderCalendar(); });
+})();
+</script>
+
+<!-- Promo Banner Teal -->
+<div id="uu-dai-thanh-vien" class="py-3 text-white" style="background-color: #00768e;">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center gap-4">
+        <div class="d-flex align-items-center gap-3 text-center text-md-start">
+            <i class="fa-solid fa-water fs-1"></i>
+            <span class="fs-5 fw-bold" style="line-height: 1.2;">Sắp tới bạn muốn đi đâu? Chọn khách sạn tại các điểm đến hàng đầu.</span>
+        </div>
+        <a href="timkiem.php" class="btn btn-outline-light rounded-1 px-4 py-2 fw-medium text-nowrap">Lên kế hoạch cho Lần lưu trú</a>
+
+</div>
+
+<!-- Premium Video Hero Image / Animated Banner -->
+<div class="position-relative overflow-hidden w-100 shadow-sm" style="height: 600px; margin-bottom: 2rem;">
+    <!-- Ảnh Nền Đẹp (Image Background) thay cho video -->
+    <img src="assets/img/premium_luxury_resort_hero_1777033980264.png" class="position-absolute top-0 start-0 w-100 h-100" style="object-fit: cover; z-index: 1;" alt="Luxury Resort">
+    
+    <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50" style="z-index: 2;"></div>
+    
+    <div class="position-relative text-center d-flex flex-column align-items-center justify-content-center h-100 text-white" style="z-index: 3;">
+        <h1 class="display-3 fw-bold mb-3 shadow-text reveal-up" style="font-family: serif; letter-spacing: 1px;">Khám Phá Tuyệt Tác Của <br><span class="text-warning">Sự Xa Hoa</span></h1>
+        <p class="fs-5 mb-4 shadow-text reveal-up delay-1" style="max-width: 700px;">Nơi mỗi chi tiết kiến trúc đều được thiết kế để đánh thức trọn vẹn mọi giác quan của bạn giữa lòng đô thị.</p>
+        <a href="#danh-sach-phong" class="btn btn-warning rounded-pill px-5 py-3 fw-bold fs-6 shadow text-dark uppercase tracking-widest hover-zoom reveal-up delay-2">Khám Phá Ngay <i class="fa-solid fa-arrow-down ms-2"></i></a>
+    </div>
+</div>
+
+<!-- Tiêu sử & Mô tả -->
+<div class="container my-5 py-5 border-bottom">
+    <div class="row align-items-center">
+        <div class="col-lg-6 reveal-up pr-lg-5">
+            <h6 class="text-primary fw-bold text-uppercase tracking-widest mb-2"><i class="fa-solid fa-feather-pointed me-2"></i> Câu chuyện của chúng tôi</h6>
+            <h2 class="fw-bold mb-4" style="font-family: serif; font-size: 2.8rem; line-height: 1.2;">Hơn Một Thập Kỷ Kiến Tạo <br><span class="text-gradient-gold" style="background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%); background-clip: text; -webkit-text-fill-color: transparent;">Sự Hoàn Mỹ</span></h2>
+            <p class="text-muted fs-5 mb-4" style="line-height: 1.8;">K-Hotel được thành lập vào năm 2012 với một tầm nhìn kiên định: định nghĩa lại khái niệm nghỉ dưỡng đẳng cấp mang đậm hồn Việt. Với kiến trúc giao thoa giữa nét cổ điển hoa lệ phương Tây và sự thanh lịch Á Đông, chúng tôi tự hào là điểm dừng chân hoàn hảo cho giới tinh hoa.</p>
+            <p class="text-muted mb-4" style="line-height: 1.6;">Từ nụ cười nồng ấm tại tiền sảnh, đến chiếc giường tiêu chuẩn hoàng gia được chuẩn bị tỉ mỉ — mọi trải nghiệm của bạn đều được chăm chút bởi đội ngũ nhân sự tận tụy nhất. K-Hotel không chỉ là nơi lưu trú, đây là một bộ sưu tập những kỷ niệm vô giá.</p>
+
+        </div>
+        <div class="col-lg-6 mt-5 mt-lg-0 position-relative reveal-up delay-2">
+            <!-- Decorative rounded frames -->
+            <div class="position-absolute bg-warning rounded-circle" style="width: 250px; height: 250px; top: -30px; right: -20px; opacity: 0.15; filter: blur(50px);"></div>
+            <img src="assets/img/luxury_hotel_history_1777034042949.png" class="img-fluid rounded-4 shadow-lg hover-zoom" style="height: 480px; width: 100%; object-fit: cover; border: 10px solid #fff;" alt="K-Hotel History">
+            
+            <!-- Animated Floater (Ảnh Động CSS) -->
+            <div class="position-absolute bottom-0 start-0 translate-middle-y ms-4 mb-4 bg-white p-3 px-4 rounded-4 shadow-lg bounce-anim border-start border-4 border-warning d-flex align-items-center gap-3">
+                <i class="fa-solid fa-award text-warning fs-1"></i>
+                <div>
+                    <h3 class="text-dark fw-bold mb-0">12+</h3>
+                    <span class="text-muted fw-bold" style="font-size: 0.85rem;">Năm Tỏa Sáng</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vị trí Location -->
+<div id="location-section" class="bg-light py-5 mb-5 border-top border-bottom">
+    <div class="container py-4">
+        <div class="text-center mb-5 reveal-up">
+            <h6 class="text-warning fw-bold text-uppercase tracking-widest mb-2"><i class="fa-solid fa-map-location-dot"></i> Vị Trí Đắc Địa</h6>
+            <h2 class="fw-bold" style="font-family: serif; font-size: 2.2rem;">Trái Tim Của Đô Thị Phồn Hoa</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">Tọa lạc trọn vẹn tại trung tâm kinh tế - văn hoá, K-Hotel mang đến sự tiện lợi tuyệt đối cho du khách để thỏa mình vào những danh lam thắng cảnh và khu trung tâm mua sắm sầm uất bậc nhất.</p>
+        </div>
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-5 reveal-up delay-1">
+                <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm h-100 border-0 border-start border-5 border-primary">
+                    <h4 class="fw-bold mb-4">Thông tin liên hệ</h4>
+                    <ul class="list-unstyled d-flex flex-column gap-3 mb-4">
+                        <li class="d-flex align-items-start gap-4 p-2 rounded-3 hover-bg-light transition">
+                            <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                <i class="fa-solid fa-location-dot fs-5"></i>
+                            </div>
+                            <div class="mt-1">
+                                <strong class="d-block text-dark">Địa chỉ:</strong>
+                                <span class="text-muted small">Khối đế Landmark A, Đại lộ trung tâm, Quận 1, TP. Hồ Chí Minh</span>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-start gap-4 p-2 rounded-3 hover-bg-light transition">
+                            <div class="bg-success bg-opacity-10 text-success p-3 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                <i class="fa-solid fa-phone fs-5"></i>
+                            </div>
+                            <div class="mt-1">
+                                <strong class="d-block text-dark">Hotline 24/7 (Miễn cước):</strong>
+                                <span class="text-muted fw-bold">1900 1234 567</span>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-start gap-4 p-2 rounded-3 hover-bg-light transition">
+                            <div class="bg-danger bg-opacity-10 text-danger p-3 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                <i class="fax-regular fa-envelope fs-5"></i>
+                            </div>
+                            <div class="mt-1">
+                                <strong class="d-block text-dark">Email Đặt Phòng:</strong>
+                                <span class="text-muted">reservation@khotel.vn</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <hr class="my-4">
+                    <h5 class="fw-bold fs-6 mb-3">Khoảng cách đến các trọng điểm:</h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-light text-dark border p-2"><i class="fa-solid fa-plane text-primary me-1"></i> Sân bay: 15p</span>
+                        <span class="badge bg-light text-dark border p-2"><i class="fa-solid fa-train text-primary me-1"></i> Tàu điện ngầm: 3p</span>
+                        <span class="badge bg-light text-dark border p-2"><i class="fa-solid fa-bag-shopping text-primary me-1"></i> Vincom Center: 2p</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 reveal-up delay-2">
+                <!-- Google Maps Embed -->
+                <div class="rounded-4 overflow-hidden shadow-md border position-relative hover-zoom" style="height: 520px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2789182061036!2d106.69744111428678!3d10.789932161901306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f360eb3dfbd%3A0xe72648fbbe9eb586!2sLandmark%2081!5e0!3m2!1sen!2s!4v1689233069123!5m2!1sen!2s" width="100%" height="100%" style="border:0; filter: contrast(110%);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="danh-sach-phong" class="container my-5 pt-4">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+            <?php if(isset($_SESSION['user_id']) && count($recommendations) > 0 && $_SESSION['role']=='khach'): ?>
+                <h2 class="fw-bold text-gradient-primary"><i class="fa-solid fa-wand-magic-sparkles text-primary"></i> Gợi Ý Đặc Biệt Dành Riêng Cho Bạn</h2>
+                <p class="text-muted">Hệ thống AI đề xuất phòng dựa trên thói quen và lịch sử cư trú của bạn!</p>
+            <?php else: ?>
+                <h2 class="fw-bold text-gradient-primary"><i class="fa-solid fa-star text-warning"></i> Căn Phòng Nổi Bật Nhất</h2>
+                <p class="text-muted">Lựa chọn những phòng có tiện nghi độc quyền của chúng tôi.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <?php 
+        $delay_count = 0;
+        foreach($recommendations as $rm): 
+            $delay_class = $delay_count > 0 && $delay_count < 5 ? "delay-" . $delay_count : "";
+            $delay_count++;
+        ?>
+        <div class="col-md-6 col-lg-3 reveal-up <?= $delay_class ?>">
+            <div class="card h-100 shadow-sm border-0 premium-card">
+                <img src="<?= htmlspecialchars(!empty($rm['HinhAnh']) && file_exists($rm['HinhAnh']) ? $rm['HinhAnh'] : 'https://images.unsplash.com/photo-1611892440504-42a792e24d32') ?>" class="card-img-top room-img" alt="Room">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold"><?= $rm['TenLoai'] ?> (<?= $rm['MaPhong'] ?>)</h5>
+                    <p class="mb-2 text-primary fw-bold fs-5"><?= number_format($rm['GiaPhong']) ?> ₫<small class="text-muted fs-6 fw-normal"> / đêm</small></p>
+                    <p class="card-text text-muted small mb-1"><i class="fa-solid fa-user-group text-secondary w-15px"></i> <?= $rm['SoNguoiToiDa'] ?> người</p>
+                    <p class="card-text text-muted small mb-3"><i class="fa-solid fa-check text-success w-15px"></i> <?= $rm['TienNghi'] ?></p>
+                    <div class="mt-auto">
+                        <a href="chitiet.php?id=<?= $rm['MaPhong'] ?>" class="btn btn-outline-primary w-100 fw-bold rounded-pill">Xem Chi Tiết</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+        <?php if(count($recommendations) == 0): ?>
+            <p class="text-center w-100 text-danger">Hiện tại đã hết phòng trống. Xin vui lòng quay lại sau!</p>
+        <?php endif; ?>
+    </div>
+</div>
+
+<!-- Gallery Beach Vibes -->
+<div class="bg-white py-5 mb-3 border-top">
+    <div class="container-fluid px-4 px-lg-5">
+        <div class="text-center mb-5 reveal-up">
+            <h6 class="text-primary fw-bold text-uppercase tracking-widest mb-2"><i class="fa-solid fa-umbrella-beach"></i> Trải Nghiệm Khó Quên</h6>
+            <h2 class="fw-bold" style="font-family: serif; font-size: 2.5rem;">Hòa Mình Cùng Biển Cả</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">Những bờ cát trắng mịn, làn nước trong xanh lấp lánh dưới ánh nắng nhiệt đới quyến rũ đang chờ đón bạn ngay bên ngoài ban công K-Hotel.</p>
+        </div>
+        
+        <div class="row g-3" style="max-height: 500px;">
+            <div class="col-md-6 col-lg-8 reveal-up delay-1">
+                <div class="overflow-hidden rounded-4 shadow-sm position-relative h-100 hover-zoom">
+                    <img src="assets/img/private_beach_sunset_1777034168568.png" class="w-100 h-100" style="object-fit: cover; min-height: 500px;" alt="Beach view">
+                    <div class="position-absolute bottom-0 start-0 w-100 p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                        <h4 class="text-white fw-bold mb-0">Bãi Biển Riêng Tư Vô Tận</h4>
+                        <p class="text-white opacity-75 mb-0">Khu vực nghỉ dưỡng hoàng hôn dành độc quyền cho khách VIP K-Hotel</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 d-flex flex-column gap-3 reveal-up delay-2">
+                <div class="overflow-hidden rounded-4 shadow-sm position-relative flex-grow-1 hover-zoom h-50">
+                    <img src="assets/img/ocean_wave_1777034188877.png" class="w-100 h-100" style="object-fit: cover;" alt="Ocean wave">
+                </div>
+                <div class="overflow-hidden rounded-4 shadow-sm position-relative flex-grow-1 hover-zoom h-50">
+                    <!-- Resort beach setup -->
+                    <img src="assets/img/tropical_pool_1777034220551.png" class="w-100 h-100" style="object-fit: cover;" alt="Tropical pool">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-dark text-white py-5 mt-4">
+    <div class="container text-center">
+        <h3 class="fw-bold mb-3"><i class="fa-solid fa-hotel text-warning"></i> K-Hotel Việt Nam</h3>
+        <p class="opacity-75">Hotline: 1900 1234 | Email: booking@khotel.vn</p>
+        <p class="opacity-50 small m-0">&copy; 2026 Bản quyền thuộc về K-Hotel.</p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ===== GUEST PICKER =====
+(function(){
+    let adults = 1, kids = 0, rooms = 1;
+    const MAX_ROOMS = 4, MAX_ADULTS = 10, MAX_KIDS = 6;
+    let extraRoomCount = 0;
+
+    window.toggleGuestPicker = function(e) {
+        e.stopPropagation();
+        const picker = document.getElementById('guestPicker');
+        const isOpen = picker.classList.contains('show');
+        // Close date picker first
+        closeDatePicker();
+        picker.classList.toggle('show', !isOpen);
+    };
+    window.closeGuestPicker = function() {
+        document.getElementById('guestPicker').classList.remove('show');
+        updateSummary();
+    };
+
+    window.changeCount = function(type, delta) {
+        if (type === 'adults') {
+            adults = Math.max(1, Math.min(MAX_ADULTS, adults + delta));
+            document.getElementById('countAdults').textContent = adults;
+        } else if (type === 'kids') {
+            kids = Math.max(0, Math.min(MAX_KIDS, kids + delta));
+            document.getElementById('countKids').textContent = kids;
+        }
+        updateButtons();
+        updateSummary();
+    };
+
+    window.addRoom = function() {
+        if (rooms >= MAX_ROOMS) return;
+        rooms++;
+        extraRoomCount++;
+        const container = document.getElementById('extraRooms');
+        const div = document.createElement('div');
+        div.className = 'gp-row border-top pt-2 mt-1';
+        div.id = 'extraRoom' + rooms;
+        div.innerHTML = `
+            <div class="gp-label">
+                <div class="gp-label-main">Phòng ${rooms}</div>
+                <div class="gp-label-sub"><a href="#" onclick="removeRoom(${rooms})" style="color:#ef4444;font-size:0.78rem;font-weight:600;text-decoration:none;">Xóa phòng</a></div>
+            </div>
+            <div class="gp-cols">
+                <div class="gp-col">
+                    <div class="gp-col-label">Người lớn</div>
+                    <div class="gp-counter">
+                        <button type="button" class="gp-btn" onclick="changeRoomCount(${rooms},'a',-1)"><i class="fa-solid fa-minus"></i></button>
+                        <span class="gp-count" id="r${rooms}a">1</span>
+                        <button type="button" class="gp-btn" onclick="changeRoomCount(${rooms},'a',1)"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+                <div class="gp-col">
+                    <div class="gp-col-label">Trẻ em</div>
+                    <div class="gp-counter">
+                        <button type="button" class="gp-btn" onclick="changeRoomCount(${rooms},'k',-1)"><i class="fa-solid fa-minus"></i></button>
+                        <span class="gp-count" id="r${rooms}k">0</span>
+                        <button type="button" class="gp-btn" onclick="changeRoomCount(${rooms},'k',1)"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>`;
+        container.appendChild(div);
+        document.getElementById('hiddenRooms').value = rooms;
+        updateSummary();
+    };
+
+    window.removeRoom = function(id) {
+        const el = document.getElementById('extraRoom' + id);
+        if (el) { el.remove(); rooms--; extraRoomCount--; }
+        document.getElementById('hiddenRooms').value = rooms;
+        updateSummary();
+        return false;
+    };
+
+    window.changeRoomCount = function(room, type, delta) {
+        const el = document.getElementById('r' + room + type);
+        if (!el) return;
+        let val = parseInt(el.textContent);
+        val = Math.max(type === 'a' ? 1 : 0, Math.min(type === 'a' ? MAX_ADULTS : MAX_KIDS, val + delta));
+        el.textContent = val;
+        updateSummary();
+    };
+
+    function updateButtons() {
+        const minusAdult = document.querySelector('#countAdults')?.closest('.gp-counter')?.querySelector('.gp-btn');
+        if(minusAdult) minusAdult.disabled = adults <= 1;
+        const minusKid = document.querySelector('#countKids')?.closest('.gp-counter')?.querySelector('.gp-btn');
+        if(minusKid) minusKid.disabled = kids <= 0;
+    }
+
+    function updateSummary() {
+        document.getElementById('hiddenAdults').value = adults;
+        document.getElementById('hiddenKids').value = kids;
+        document.getElementById('hiddenRooms').value = rooms;
+        let txt = rooms + ' phòng, ' + adults + ' người lớn';
+        if(kids > 0) txt += ', ' + kids + ' trẻ em';
+        document.getElementById('guestSummary').textContent = txt;
+    }
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        const picker = document.getElementById('guestPicker');
+        const trigger = document.getElementById('guestTrigger');
+        if (picker && !picker.contains(e.target) && !trigger.contains(e.target)) {
+            picker.classList.remove('show');
+        }
+    });
+})();
+</script>
+</body>
+</html>
