@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $safe_email = $conn->real_escape_string($email);
 
         try {
-            // Tìm tài khoản có email này (Kiểm tra cả bảng TaiKhoan và KhachHang)
+            // Tìm tài khoản có email này (Kiểm tra cả bảng TaiKhoan và KhachHang cho chắc ăn)
             $res = $conn->query("
                 SELECT tk.MaTK, tk.HoTen, 
                        COALESCE(kh.Email, '') as KhachEmail
